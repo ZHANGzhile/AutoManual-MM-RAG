@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-07-29T21:54:35.951608+00:00",
+  "questions": "data/eval/questions.jsonl",
+  "answerable_questions": 26,
+  "rrf": {
+    "candidate_limit": 50,
+    "k": 60,
+    "bm25_weight": 1.0,
+    "dense_weight": 1.0
+  },
+  "metrics": {
+    "bm25": {
+      "questions": 26,
+      "recall_at_5": 0.8846153846153846,
+      "recall_at_10": 0.9615384615384616,
+      "mrr_at_10": 0.7991452991452992,
+      "metadata_filter_violations": 0,
+      "metadata_filter_violation_rate": 0.0
+    },
+    "dense": {
+      "questions": 26,
+      "recall_at_5": 0.7692307692307693,
+      "recall_at_10": 0.7692307692307693,
+      "mrr_at_10": 0.5833333333333333,
+      "metadata_filter_violations": 0,
+      "metadata_filter_violation_rate": 0.0
+    },
+    "hybrid": {
+      "questions": 26,
+      "recall_at_5": 0.8076923076923077,
+      "recall_at_10": 0.8846153846153846,
+      "mrr_at_10": 0.747542735042735,
+      "metadata_filter_violations": 0,
+      "metadata_filter_violation_rate": 0.0
+    }
+  }
+}

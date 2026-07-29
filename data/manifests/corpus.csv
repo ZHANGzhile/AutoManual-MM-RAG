@@ -1,0 +1,5 @@
+doc_id,brand,model,year,region,language,manual_type,source_url,downloaded_at,local_filename
+ford_bronco_2026_na_en,Ford,Bronco,2026,North America,en,owner_manual,https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/2026_U725_Bronco_TG1_OM_EN-US_v1.pdf,2026-07-29T15:20:31+02:00,ford_bronco_2026_na_en.pdf
+ford_f150_lightning_2026_na_en,Ford,F-150 Lightning,2026,North America,en,owner_manual,https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/2026_F-150_Lightning_OM_enUSA_V1.pdf,2026-07-29T15:20:31+02:00,ford_f150_lightning_2026_na_en.pdf
+ford_mache_2026_na_en,Ford,Mustang Mach-E,2026,North America,en,owner_manual,https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/2026-Mach-E-OM-enUSA-V1.pdf,2026-07-29T15:19:56+02:00,ford_mache_2026_na_en.pdf
+ford_maverick_2026_na_en,Ford,Maverick,2026,North America,en,owner_manual,https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/2026-Maverick-OM-enUSA-V1.pdf,2026-07-29T15:20:31+02:00,ford_maverick_2026_na_en.pdf

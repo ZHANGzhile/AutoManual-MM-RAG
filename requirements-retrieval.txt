@@ -1,0 +1,2 @@
+# BM25 remains standard-library only. Dense/Hybrid requires NumPy.
+numpy>=1.26,<3

@@ -1,0 +1,300 @@
+{
+  "backend": "visual_page_bm25_rrf",
+  "generated_at": "2026-07-29T21:54:34.547877+00:00",
+  "use_text_hint": true,
+  "query_count": 12,
+  "metrics": {
+    "queries": 12,
+    "recall_at_1": 1.0,
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "mrr_at_10": 1.0,
+    "metadata_filter_violations": 0,
+    "metadata_filter_violation_rate": 0.0
+  },
+  "split_metrics": {
+    "dev": {
+      "queries": 4,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "test": {
+      "queries": 8,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    }
+  },
+  "category_metrics": {
+    "component_diagram": {
+      "queries": 1,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "component_location": {
+      "queries": 1,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "control_diagram": {
+      "queries": 1,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "instrument_cluster": {
+      "queries": 2,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "instrument_icon": {
+      "queries": 1,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "operation_diagram": {
+      "queries": 5,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "vehicle_part": {
+      "queries": 1,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    }
+  },
+  "details": [
+    {
+      "query_id": "bronco_icon_001",
+      "category": "instrument_icon",
+      "split": "dev",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_bronco_2026_na_en:p0025:image:000296:78b2c71fdf6be67b",
+      "top_result": {
+        "element_id": "ford_bronco_2026_na_en:p0025:image:000296:78b2c71fdf6be67b",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_no": 25,
+        "section_path": [
+          "Symbols Glossary",
+          "SYMBOLS USED ON YOUR VEHICLE"
+        ],
+        "asset_path": "data/parsed/ford_bronco_2026_na_en/ford_bronco_2026_na_en/txt/images/437684cadb4b3eb31a21678de7dfbe4f5e47a19713dcdf4789fde6430f02350c.jpg",
+        "score": 0.03252247488101534
+      }
+    },
+    {
+      "query_id": "bronco_cluster_002",
+      "category": "instrument_cluster",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_bronco_2026_na_en:p0112:image:002180:9ee1e65d0958db40",
+      "top_result": {
+        "element_id": "ford_bronco_2026_na_en:p0112:image:002180:9ee1e65d0958db40",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_no": 112,
+        "section_path": [
+          "Instrument Cluster",
+          "INSTRUMENT CLUSTER OVERVIEW - EXCLUDING: RAPTOR"
+        ],
+        "asset_path": "data/parsed/ford_bronco_2026_na_en/ford_bronco_2026_na_en/txt/images/f221620be07dd997ae361f0c183b679bc9a6cdcb9b60434c15c859941e96cd8b.jpg",
+        "score": 0.03252247488101534
+      }
+    },
+    {
+      "query_id": "bronco_tailgate_003",
+      "category": "operation_diagram",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_bronco_2026_na_en:p0084:image:001530:0c8972f4c6969366",
+      "top_result": {
+        "element_id": "ford_bronco_2026_na_en:p0084:image:001530:0c8972f4c6969366",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_no": 84,
+        "section_path": [
+          "Tailgate",
+          "Emergency Locking"
+        ],
+        "asset_path": "data/parsed/ford_bronco_2026_na_en/ford_bronco_2026_na_en/txt/images/d132770698444f358ca4057b9dedd093dd1838b50ac8a469630284910c5719d9.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "f150_charge_port_004",
+      "category": "vehicle_part",
+      "split": "dev",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_f150_lightning_2026_na_en:p0218:image:004326:6dacbaf791a4d6bf",
+      "top_result": {
+        "element_id": "ford_f150_lightning_2026_na_en:p0218:image:004326:6dacbaf791a4d6bf",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_no": 218,
+        "section_path": [
+          "Charging Your Vehicle",
+          "LOCATING THE CHARGE PORT"
+        ],
+        "asset_path": "data/parsed/ford_f150_lightning_2026_na_en/ford_f150_lightning_2026_na_en/txt/images/2f81a9b1881a23a8d7a21928989249f1e818f8c56af2b2c2a1f490fc3a4b8a07.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "f150_tailgate_005",
+      "category": "operation_diagram",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_f150_lightning_2026_na_en:p0102:image:001856:50f3030173ef59fa",
+      "top_result": {
+        "element_id": "ford_f150_lightning_2026_na_en:p0102:image:001856:50f3030173ef59fa",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_no": 102,
+        "section_path": [
+          "Tailgate - Vehicles With: Power Tailgate",
+          "REMOVING AND INSTALLINGTHE TAILGATE"
+        ],
+        "asset_path": "data/parsed/ford_f150_lightning_2026_na_en/ford_f150_lightning_2026_na_en/txt/images/0d21657aaae6d65e796d54a27f9063ec7f19475c9a7e4ca8a5001227cf8335a0.jpg",
+        "score": 0.03252247488101534
+      }
+    },
+    {
+      "query_id": "f150_cluster_006",
+      "category": "instrument_cluster",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_f150_lightning_2026_na_en:p0141:image:002694:6691867fb545a033",
+      "top_result": {
+        "element_id": "ford_f150_lightning_2026_na_en:p0141:image:002694:6691867fb545a033",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_no": 141,
+        "section_path": [
+          "Instrument Cluster",
+          "INSTRUMENT CLUSTER OVERVIEW"
+        ],
+        "asset_path": "data/parsed/ford_f150_lightning_2026_na_en/ford_f150_lightning_2026_na_en/txt/images/f61b5f3e992c14ef1de6c2f554fc354065eebcce5a0aebcb25de6e51e0333182.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "mache_adapter_007",
+      "category": "operation_diagram",
+      "split": "dev",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_mache_2026_na_en:p0168:image:003293:d6522f38390fc6e3",
+      "top_result": {
+        "element_id": "ford_mache_2026_na_en:p0168:image:003293:d6522f38390fc6e3",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_no": 168,
+        "section_path": [
+          "Charging Your Vehicle",
+          "Connecting the Adapter to Your Vehicle"
+        ],
+        "asset_path": "data/parsed/ford_mache_2026_na_en/ford_mache_2026_na_en/txt/images/f067a268291304befc511dffd44289446fdd5a2ff4fb2554113492604307a115.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "mache_frunk_008",
+      "category": "operation_diagram",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_mache_2026_na_en:p0310:image:006019:a56b7c536f32a35f",
+      "top_result": {
+        "element_id": "ford_mache_2026_na_en:p0310:image:006019:a56b7c536f32a35f",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_no": 310,
+        "section_path": [
+          "Crash and Breakdown Information",
+          "Opening the Front Luggage Compartment With No Vehicle Power"
+        ],
+        "asset_path": "data/parsed/ford_mache_2026_na_en/ford_mache_2026_na_en/txt/images/6c04b2bf5f9a3352ffd17d920a5278abb84547ae5ad5d292eb9e9e6af08b765f.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "mache_tire_kit_009",
+      "category": "component_diagram",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_mache_2026_na_en:p0364:image:006842:69e1b0dbf36dc75f",
+      "top_result": {
+        "element_id": "ford_mache_2026_na_en:p0364:image:006842:69e1b0dbf36dc75f",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_no": 364,
+        "section_path": [
+          "Tire Sealant and Inflator Kit",
+          "TIRE SEALANT AND INFLATOR KIT COMPONENTS Tire Sealant and Inflator Kit Solution 1"
+        ],
+        "asset_path": "data/parsed/ford_mache_2026_na_en/ford_mache_2026_na_en/txt/images/2596b7aa947ab435f96d5473ce5edb902dea580a33882140970df24a34479b44.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "maverick_wiper_010",
+      "category": "control_diagram",
+      "split": "dev",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_maverick_2026_na_en:p0086:image:001596:bd68f5212122846d",
+      "top_result": {
+        "element_id": "ford_maverick_2026_na_en:p0086:image:001596:bd68f5212122846d",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_no": 86,
+        "section_path": [
+          "Wipers and Washers",
+          "SWITCHING WINDSHIELD WIPERS ON AND OFF"
+        ],
+        "asset_path": "data/parsed/ford_maverick_2026_na_en/ford_maverick_2026_na_en/txt/images/138892e3c2b5a077ab74da2f825a7a84ec0715cf195eaad2b198e58d95633f8e.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "maverick_hood_011",
+      "category": "operation_diagram",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_maverick_2026_na_en:p0347:image:006593:fe3a9f5454b6b501",
+      "top_result": {
+        "element_id": "ford_maverick_2026_na_en:p0347:image:006593:fe3a9f5454b6b501",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_no": 347,
+        "section_path": [
+          "Maintenance",
+          "OPENING AND CLOSING THE HOOD Opening the Hood"
+        ],
+        "asset_path": "data/parsed/ford_maverick_2026_na_en/ford_maverick_2026_na_en/txt/images/6b3cc81a811927d1152cec49bcb80465371e27a5a20f240fb37a84af3f9fd017.jpg",
+        "score": 0.03278688524590164
+      }
+    },
+    {
+      "query_id": "maverick_anchor_012",
+      "category": "component_location",
+      "split": "test",
+      "first_relevant_rank": 1,
+      "gold_element_id": "ford_maverick_2026_na_en:p0038:image:000638:cfda2a444144a48a",
+      "top_result": {
+        "element_id": "ford_maverick_2026_na_en:p0038:image:000638:cfda2a444144a48a",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_no": 38,
+        "section_path": [
+          "Child Safety",
+          "LOCATING THE CHILD RESTRAINT LOWER ANCHOR POINTS"
+        ],
+        "asset_path": "data/parsed/ford_maverick_2026_na_en/ford_maverick_2026_na_en/txt/images/1ff7adf00cceac6d87d6ae9ba9120f8597a4ef103e45a948c99b7ee183793a46.jpg",
+        "score": 0.03278688524590164
+      }
+    }
+  ]
+}

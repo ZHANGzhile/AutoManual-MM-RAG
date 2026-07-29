@@ -1,0 +1,590 @@
+{
+  "backend": "hashed_tfidf_randomized_lsa",
+  "generated_at": "2026-07-29T21:54:34.967915+00:00",
+  "index_path": "data/indexes/dense_lsa.npz",
+  "index_chunks": 12236,
+  "questions_total": 30,
+  "answerable_questions": 26,
+  "no_answer_questions": 4,
+  "metrics": {
+    "questions": 26,
+    "recall_at_5": 0.7692307692307693,
+    "recall_at_10": 0.7692307692307693,
+    "mrr_at_10": 0.5833333333333333,
+    "metadata_filter_violations": 0,
+    "metadata_filter_violation_rate": 0.0
+  },
+  "category_metrics": {
+    "fact": {
+      "questions": 4,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "image_grounded": {
+      "questions": 5,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 0.6166666666666667
+    },
+    "metadata_isolation": {
+      "questions": 4,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "procedure": {
+      "questions": 11,
+      "recall_at_5": 0.6363636363636364,
+      "recall_at_10": 0.6363636363636364,
+      "mrr_at_10": 0.37121212121212116
+    },
+    "safety": {
+      "questions": 2,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "mrr_at_10": 0.0
+    }
+  },
+  "no_answer_diagnostic": {
+    "cases_returning_candidates": 4,
+    "abstention_threshold_configured": false,
+    "included_in_recall_metrics": false
+  },
+  "details": [
+    {
+      "question_id": "bronco_proc_001",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_bronco_2026_na_en:chunk:text:4d6eb0f0ccde9cda",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_nos": [
+          84
+        ],
+        "section_path": [
+          "Tailgate",
+          "Emergency Unlocking"
+        ],
+        "score": 0.5352442860603333
+      }
+    },
+    {
+      "question_id": "bronco_meta_002",
+      "category": "metadata_isolation",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_bronco_2026_na_en:chunk:steps:f2ab197992fee256",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_nos": [
+          89
+        ],
+        "section_path": [
+          "Steering Wheel",
+          "ADJUSTING THE STEERING WHEEL"
+        ],
+        "score": 0.8434016108512878
+      }
+    },
+    {
+      "question_id": "bronco_proc_003",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": 3,
+      "top_result": {
+        "chunk_id": "ford_bronco_2026_na_en:chunk:note:a77d5fceff93527d",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_nos": [
+          259
+        ],
+        "section_path": [
+          "Adaptive Cruise Control (If Equipped)",
+          "Switching Adaptive Cruise Control Off"
+        ],
+        "score": 0.8511130809783936
+      }
+    },
+    {
+      "question_id": "bronco_proc_004",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_bronco_2026_na_en:chunk:steps:e16c1e50549807d5",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_nos": [
+          293
+        ],
+        "section_path": [
+          "Load Carrying",
+          "REMOVING AND INSTALLING THE ROOF RACK Removing the Roof Rack"
+        ],
+        "score": 0.5613120198249817
+      }
+    },
+    {
+      "question_id": "bronco_fact_005",
+      "category": "fact",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_bronco_2026_na_en:chunk:text:40beba2a8489bd2f",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_nos": [
+          222
+        ],
+        "section_path": [
+          "Hill Start Assist (If Equipped)",
+          "WHAT IS HILL START ASSIST"
+        ],
+        "score": 0.7520058155059814
+      }
+    },
+    {
+      "question_id": "bronco_image_006",
+      "category": "image_grounded",
+      "answerable": true,
+      "first_relevant_rank": 2,
+      "top_result": {
+        "chunk_id": "ford_bronco_2026_na_en:chunk:text:5941fa7f715f1833",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_nos": [
+          58
+        ],
+        "section_path": [
+          "Seatbelts",
+          "Seatbelt Warning Lamp"
+        ],
+        "score": 0.5235651135444641
+      }
+    },
+    {
+      "question_id": "f150_meta_007",
+      "category": "metadata_isolation",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_f150_lightning_2026_na_en:chunk:steps:ca23440e2c37cc01",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_nos": [
+          111
+        ],
+        "section_path": [
+          "Steering Wheel",
+          "ADJUSTING THE STEERING WHEEL - VEHICLES WITH: MANUAL ADJUSTABLE STEERING COLUMN"
+        ],
+        "score": 0.7999764680862427
+      }
+    },
+    {
+      "question_id": "f150_safety_008",
+      "category": "safety",
+      "answerable": true,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:1e1274c856a54877",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_nos": [
+          228
+        ],
+        "section_path": [
+          "Charging Your Vehicle",
+          "Advanced Menu"
+        ],
+        "score": 0.6199141144752502
+      }
+    },
+    {
+      "question_id": "f150_image_009",
+      "category": "image_grounded",
+      "answerable": true,
+      "first_relevant_rank": 3,
+      "top_result": {
+        "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:bc500479a0d5bf00",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_nos": [
+          218
+        ],
+        "section_path": [
+          "Charging Your Vehicle",
+          "CHARGE PORT INDICATORS"
+        ],
+        "score": 0.4983845055103302
+      }
+    },
+    {
+      "question_id": "f150_proc_010",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_f150_lightning_2026_na_en:chunk:steps:b8f2838749437f29",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_nos": [
+          46
+        ],
+        "section_path": [
+          "Child Safety"
+        ],
+        "score": 0.7185457348823547
+      }
+    },
+    {
+      "question_id": "f150_proc_011",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:49b88d87189d833b",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_nos": [
+          105
+        ],
+        "section_path": [
+          "Tailgate - Vehicles With: Power Tailgate"
+        ],
+        "score": 0.522266149520874
+      }
+    },
+    {
+      "question_id": "f150_image_012",
+      "category": "image_grounded",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:e024f5cacfb4bbd4",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_nos": [
+          365
+        ],
+        "section_path": [
+          "Luggage Compartment",
+          "USING THE FRUNK EMERGENCY RELEASE"
+        ],
+        "score": 0.49601131677627563
+      }
+    },
+    {
+      "question_id": "mache_meta_013",
+      "category": "metadata_isolation",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_mache_2026_na_en:chunk:steps:1814294fb089a87c",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_nos": [
+          95
+        ],
+        "section_path": [
+          "Steering Wheel",
+          "ADJUSTING THE STEERING WHEEL"
+        ],
+        "score": 0.8193356394767761
+      }
+    },
+    {
+      "question_id": "mache_safety_014",
+      "category": "safety",
+      "answerable": true,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_mache_2026_na_en:chunk:text:9d535c1469085193",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_nos": [
+          186
+        ],
+        "section_path": [
+          "Charging Your Vehicle",
+          "Advanced Menu"
+        ],
+        "score": 0.4179050624370575
+      }
+    },
+    {
+      "question_id": "mache_image_015",
+      "category": "image_grounded",
+      "answerable": true,
+      "first_relevant_rank": 4,
+      "top_result": {
+        "chunk_id": "ford_mache_2026_na_en:chunk:note:897d4ce772e6855e",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_nos": [
+          176
+        ],
+        "section_path": [
+          "Charging Your Vehicle"
+        ],
+        "score": 0.5148491859436035
+      }
+    },
+    {
+      "question_id": "mache_proc_016",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_mache_2026_na_en:chunk:text:fa2f0874a89fec8e",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_nos": [
+          45
+        ],
+        "section_path": [
+          "Child Safety",
+          "CHILD SAFETY LOCKS"
+        ],
+        "score": 0.7334865927696228
+      }
+    },
+    {
+      "question_id": "mache_proc_017",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_mache_2026_na_en:chunk:text:b6897a93def4a361",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_nos": [
+          310
+        ],
+        "section_path": [
+          "Crash and Breakdown Information",
+          "Opening the Front Luggage Compartment With No Vehicle Power"
+        ],
+        "score": 0.7802257537841797
+      }
+    },
+    {
+      "question_id": "mache_fact_018",
+      "category": "fact",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_mache_2026_na_en:chunk:text:e61ec3cc433fda6d",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_nos": [
+          305
+        ],
+        "section_path": [
+          "Driving Hints",
+          "Driving in Cold Weather"
+        ],
+        "score": 0.4313713312149048
+      }
+    },
+    {
+      "question_id": "maverick_meta_019",
+      "category": "metadata_isolation",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:steps:f29ad811f2c073f5",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          85
+        ],
+        "section_path": [
+          "Steering Wheel",
+          "ADJUSTING THE STEERING WHEEL"
+        ],
+        "score": 0.8198531866073608
+      }
+    },
+    {
+      "question_id": "maverick_proc_020",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": 4,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:text:b2b46bb2b2bf69ce",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          74
+        ],
+        "section_path": [
+          "Doors and Locks",
+          "UNLOCKING AND LOCKING THE DOORS USING THE KEY BLADE"
+        ],
+        "score": 0.5159658193588257
+      }
+    },
+    {
+      "question_id": "maverick_fact_021",
+      "category": "fact",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:note:2716d81bf9299977",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          81
+        ],
+        "section_path": [
+          "Tailgate"
+        ],
+        "score": 0.5067002177238464
+      }
+    },
+    {
+      "question_id": "maverick_proc_022",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": 2,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:text:7b565d6a9f8f7573",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          90
+        ],
+        "section_path": [
+          "Wipers and Washers",
+          "WIPERS AND WASHERS – WARNING LAMPS"
+        ],
+        "score": 0.7269362807273865
+      }
+    },
+    {
+      "question_id": "maverick_proc_023",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": 2,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:steps:861e8e398703d5d8",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          348
+        ],
+        "section_path": [
+          "Maintenance"
+        ],
+        "score": 0.4333188831806183
+      }
+    },
+    {
+      "question_id": "maverick_fact_024",
+      "category": "fact",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:text:12fd04156c2bcad1",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          73
+        ],
+        "section_path": [
+          "Keys and Remote Controls",
+          "What is Valet Mode"
+        ],
+        "score": 0.7111114263534546
+      }
+    },
+    {
+      "question_id": "maverick_proc_025",
+      "category": "procedure",
+      "answerable": true,
+      "first_relevant_rank": 2,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:text:97852a19ebf2d898",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          68
+        ],
+        "section_path": [
+          "Keys and Remote Controls",
+          "Remote Start (If Equipped)"
+        ],
+        "score": 0.5374184250831604
+      }
+    },
+    {
+      "question_id": "maverick_image_026",
+      "category": "image_grounded",
+      "answerable": true,
+      "first_relevant_rank": 1,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:text:c511bb33940c0416",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          348
+        ],
+        "section_path": [
+          "Maintenance",
+          "Hood Ajar"
+        ],
+        "score": 0.3594946265220642
+      }
+    },
+    {
+      "question_id": "noanswer_f150_027",
+      "category": "no_answer",
+      "answerable": false,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:7182374f729ea2d9",
+        "doc_id": "ford_f150_lightning_2026_na_en",
+        "page_nos": [
+          115
+        ],
+        "section_path": [
+          "Wipers and Washers"
+        ],
+        "score": 0.2798368036746979
+      }
+    },
+    {
+      "question_id": "noanswer_mache_028",
+      "category": "no_answer",
+      "answerable": false,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_mache_2026_na_en:chunk:text:3bb533506fc55f06",
+        "doc_id": "ford_mache_2026_na_en",
+        "page_nos": [
+          208
+        ],
+        "section_path": [
+          "Reverse Brake Assist (If Equipped)",
+          "Why is reverse brake assist unavailable?"
+        ],
+        "score": 0.2642742395401001
+      }
+    },
+    {
+      "question_id": "noanswer_maverick_029",
+      "category": "no_answer",
+      "answerable": false,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_maverick_2026_na_en:chunk:steps:7978d641d70a23c6",
+        "doc_id": "ford_maverick_2026_na_en",
+        "page_nos": [
+          420
+        ],
+        "section_path": [
+          "Changing a Road Wheel",
+          "Stowing the Road Wheel"
+        ],
+        "score": 0.4189455211162567
+      }
+    },
+    {
+      "question_id": "noanswer_bronco_030",
+      "category": "no_answer",
+      "answerable": false,
+      "first_relevant_rank": null,
+      "top_result": {
+        "chunk_id": "ford_bronco_2026_na_en:chunk:note:62d7e4a5aae1202b",
+        "doc_id": "ford_bronco_2026_na_en",
+        "page_nos": [
+          178
+        ],
+        "section_path": [
+          "Manual Transmission",
+          "CHECKING THE CLUTCH FLUID LEVEL"
+        ],
+        "score": 0.3866803050041199
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-07-29T21:54:36.288198+00:00",
+  "status": "pass",
+  "dense": {
+    "backend": "hashed_tfidf_randomized_lsa",
+    "neural_embedding": false,
+    "index_path": "data/indexes/dense_lsa.npz",
+    "index_size_bytes": 8689864,
+    "chunk_count": 12236,
+    "document_count": 4,
+    "dimensions": 128,
+    "feature_count": 2048,
+    "embedding_shape": [
+      12236,
+      128
+    ],
+    "metadata_mismatches": 0,
+    "nonfinite_vector_values": 0,
+    "zero_embeddings": 0,
+    "normalization_failures": 0,
+    "repeat_load_equal": true,
+    "hard_filter_cases": 4,
+    "hard_filter_violations": 0
+  },
+  "rrf": {
+    "questions_audited": 30,
+    "hybrid_results_audited": 300,
+    "candidate_limit": 50,
+    "k": 60,
+    "bm25_weight": 1.0,
+    "dense_weight": 1.0,
+    "same_filters_forwarded": true,
+    "metadata_filter_violations": 0,
+    "source_rank_mismatches": 0,
+    "source_score_mismatches": 0,
+    "formula_mismatches": 0
+  }
+}

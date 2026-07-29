@@ -1,0 +1,3 @@
+# Traditional visual MVP. No Torch, CUDA, Transformers, or model weights.
+numpy>=1.26,<3
+Pillow>=10,<13
