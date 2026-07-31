@@ -6,6 +6,11 @@ from pathlib import Path
 from typing import Any
 
 from automanual_rag.answering import answer_question
+from automanual_rag.generation import (
+    LabeledImage,
+    configured_backend,
+    generate_or_fallback,
+)
 from automanual_rag.ingestion.mineru import load_manifest
 from automanual_rag.retrieval.bm25 import BM25Index
 from automanual_rag.retrieval.table import TableIndex
@@ -87,6 +92,7 @@ class DemoService:
             visual_index_path.resolve(),
             project_root=self.project_root,
         )
+        self.generation = configured_backend()
 
     @property
     def vehicle_choices(self) -> list[str]:
@@ -110,6 +116,11 @@ class DemoService:
                 _filters(document),
                 retrieval_limit=10,
                 max_evidence=3,
+            )
+            result = generate_or_fallback(
+                result,
+                question=question,
+                backend=self.generation,
             )
         except (OSError, RuntimeError, ValueError) as exc:
             return f"Error: {exc}", []
@@ -180,7 +191,50 @@ class DemoService:
                     item["element_id"],
                 ]
             )
-        return gallery, rows, f"Backend: {backend}; returned {len(rows)} results."
+        status = f"Backend: {backend}; returned {len(rows)} results."
+        if self.generation is not None and results:
+            evidence = [
+                {
+                    "citation_id": index + 1,
+                    **item,
+                    "source": (
+                        f"{item['brand']} {item['model']} "
+                        f"Owner's Manual ({item['year']}), "
+                        f"{' > '.join(item['section_path'])}, "
+                        f"physical PDF p.{item['page_no']}"
+                    ),
+                }
+                for index, item in enumerate(results[:3])
+            ]
+            images = [
+                LabeledImage("User query image", Path(image_path)),
+                *[
+                    LabeledImage(
+                        f"Evidence image [{index + 1}]",
+                        self.project_root / item["asset_path"],
+                    )
+                    for index, item in enumerate(results[:3])
+                ],
+            ]
+            generated = generate_or_fallback(
+                {
+                    "status": "answered",
+                    "reason": "visual_evidence_retrieved",
+                    "answer": status,
+                    "evidence": evidence,
+                },
+                question=text_hint or "Identify the uploaded image.",
+                backend=self.generation,
+                images=images,
+            )
+            status = (
+                generated["answer"]
+                + "\n\n"
+                + status
+                + "; generation="
+                + generated["generation"]["status"]
+            )
+        return gallery, rows, status
 
     def search_table(
         self,
@@ -325,8 +379,8 @@ def create_demo(service: DemoService) -> Any:
             )
             query_image = gr.Image(type="filepath", label="Query image")
             text_hint = gr.Textbox(
-                label="Optional text hint",
-                placeholder="front luggage compartment with no vehicle power",
+                label="Question / optional text hint",
+                placeholder="What does this instrument-cluster image show?",
             )
             image_button = gr.Button("Search image", variant="primary")
             image_status = gr.Markdown()

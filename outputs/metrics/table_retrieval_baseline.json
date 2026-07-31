@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T21:51:45.955005+00:00",
+  "generated_at": "2026-07-31T23:33:52.133364+00:00",
   "backend": "sqlite_fts5_table_context",
   "index_path": "data/indexes/tables.sqlite3",
   "questions": "data/eval/table_questions.jsonl",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T21:51:45.834666+00:00",
+  "generated_at": "2026-07-31T23:33:52.756363+00:00",
   "backend": "extractive_evidence_v1",
   "index_path": "data/indexes/bm25.sqlite3",
   "questions": "data/eval/questions.jsonl",

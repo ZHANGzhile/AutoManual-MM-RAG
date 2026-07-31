@@ -1,0 +1,18 @@
+{
+  "ford_bronco_2026_na_en.pdf": {
+    "size_bytes": 24044686,
+    "sha256": "ef76f740497234398637a02dbcea4380abc3a6feb8ad0ca0afe769f2d49cdef2"
+  },
+  "ford_f150_lightning_2026_na_en.pdf": {
+    "size_bytes": 20016522,
+    "sha256": "6f159a885ab135beebd27bedc10a6701409b26bc5473a75abf0bd8b22be19239"
+  },
+  "ford_mache_2026_na_en.pdf": {
+    "size_bytes": 8352323,
+    "sha256": "7a61ba0e3b2720478bfa9f94110ad406d3699a350456cbc53ce4dcb10cb8fbcf"
+  },
+  "ford_maverick_2026_na_en.pdf": {
+    "size_bytes": 8927768,
+    "sha256": "aca6835eba526b55da93e27d1ef293935d1710d1646b36b6c582c8b914df62e4"
+  }
+}

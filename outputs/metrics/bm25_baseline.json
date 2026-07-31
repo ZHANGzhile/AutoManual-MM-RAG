@@ -1,6 +1,6 @@
 {
   "backend": "sqlite_fts5_bm25",
-  "generated_at": "2026-07-29T21:54:34.632564+00:00",
+  "generated_at": "2026-07-31T23:33:49.397053+00:00",
   "index_path": "data/indexes/bm25.sqlite3",
   "index_chunks": 12236,
   "questions_total": 30,

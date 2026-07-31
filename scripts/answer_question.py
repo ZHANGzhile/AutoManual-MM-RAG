@@ -15,6 +15,10 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from automanual_rag.answering import answer_question
+from automanual_rag.generation import (
+    configured_backend,
+    generate_or_fallback,
+)
 from automanual_rag.retrieval.bm25 import BM25Index
 
 
@@ -68,7 +72,12 @@ def main() -> int:
             retrieval_limit=args.retrieval_limit,
             max_evidence=args.max_evidence,
         )
-    except (OSError, ValueError) as exc:
+        result = generate_or_fallback(
+            result,
+            question=args.query,
+            backend=configured_backend(),
+        )
+    except (OSError, RuntimeError, ValueError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2
 

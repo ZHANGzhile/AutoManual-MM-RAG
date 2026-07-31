@@ -9,7 +9,12 @@
   table-row retrieval.
 - Evidence-constrained extractive answers with citations, ordered-step and
   Warning preservation, refusal behavior, and a three-tab Gradio demo.
-- 38 passing automated tests and reproducible offline evaluation artifacts.
+- An optional Responses-compatible LLM/VLM generation layer with labeled text
+  and image evidence, citation validation, and offline fallback.
+- A FastAPI text/image/table service plus a read-only-data Docker deployment.
+- A staged public-PDF-to-index rebuild command with integrity locks, isolated
+  MinerU dependencies, audit reports, and restart support.
+- 56 passing automated tests and reproducible offline evaluation artifacts.
 
 ## Measured results
 
@@ -37,4 +42,5 @@ it is not a claim of general OCR over all 516 crops.
   answering; achieved 0.9615 BM25 Recall@10, 1.0000 image+text Recall@1, and
   zero cross-vehicle metadata violations on the development evaluations.
 - Added verified table-row answering with source-image hashes, applicability
-  guards, explicit refusal behavior, a Gradio demo, and 38 passing tests.
+  guards, explicit refusal behavior, a Gradio demo, optional grounded LLM/VLM
+  generation, a FastAPI/Docker deployment path, and 56 passing tests.

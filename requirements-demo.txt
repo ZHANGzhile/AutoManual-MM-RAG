@@ -1,3 +1,2 @@
--r requirements-retrieval.txt
--r requirements-visual.txt
+-r requirements-api.txt
 gradio>=5.0,<7.0

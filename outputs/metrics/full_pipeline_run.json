@@ -1,0 +1,125 @@
+{
+  "started_at": "2026-07-31T23:33:26.938045+00:00",
+  "status": "completed",
+  "requested_range": {
+    "from": "import",
+    "to": "test"
+  },
+  "skipped": {
+    "download": true,
+    "mineru": true
+  },
+  "stages": [
+    {
+      "stage": "import",
+      "status": "completed",
+      "commands": [
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/import_mineru_output.py",
+          "--strict"
+        ]
+      ],
+      "elapsed_seconds": 2.011
+    },
+    {
+      "stage": "chunks",
+      "status": "completed",
+      "commands": [
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/build_chunks.py"
+        ]
+      ],
+      "elapsed_seconds": 1.023
+    },
+    {
+      "stage": "indexes",
+      "status": "completed",
+      "commands": [
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/build_bm25_index.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/build_dense_index.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/build_table_index.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/build_table_row_index.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/build_visual_index.py"
+        ]
+      ],
+      "elapsed_seconds": 17.986
+    },
+    {
+      "stage": "evaluate",
+      "status": "completed",
+      "commands": [
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/evaluate_bm25.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/evaluate_retrieval.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/build_visual_eval.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/evaluate_visual.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/evaluate_tables.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/evaluate_table_rows.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/evaluate_answering.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/audit_retrieval.py"
+        ],
+        [
+          ".venv-demo/Scripts/python.exe",
+          "scripts/audit_visual.py"
+        ]
+      ],
+      "elapsed_seconds": 9.802
+    },
+    {
+      "stage": "test",
+      "status": "completed",
+      "commands": [
+        [
+          ".venv-demo/Scripts/python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ]
+      ],
+      "elapsed_seconds": 2.344
+    }
+  ],
+  "finished_at": "2026-07-31T23:34:00.122569+00:00",
+  "elapsed_seconds": 33.184
+}

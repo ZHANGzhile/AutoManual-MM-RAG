@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      AUTOMANUAL_GENERATION_BACKEND: ${AUTOMANUAL_GENERATION_BACKEND:-extractive}
+      AUTOMANUAL_GENERATION_MODEL: ${AUTOMANUAL_GENERATION_MODEL:-}
+      AUTOMANUAL_RESPONSES_URL: ${AUTOMANUAL_RESPONSES_URL:-https://api.openai.com/v1/responses}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    volumes:
+      - ./data/indexes:/app/data/indexes:ro
+      - ./data/parsed:/app/data/parsed:ro
+    restart: unless-stopped

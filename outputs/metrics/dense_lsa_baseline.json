@@ -1,6 +1,6 @@
 {
   "backend": "hashed_tfidf_randomized_lsa",
-  "generated_at": "2026-07-29T21:54:34.967915+00:00",
+  "generated_at": "2026-07-31T23:33:49.702180+00:00",
   "index_path": "data/indexes/dense_lsa.npz",
   "index_chunks": 12236,
   "questions_total": 30,

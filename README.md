@@ -61,7 +61,7 @@ their caption/footnote when present plus nearest same-page text. No VLM calls
 are made during import.
 
 The importer, chunker, and BM25 core use the Python standard library. Install
-the retrieval and visual extras before running the complete 38-test suite:
+the retrieval and visual extras before running the complete 56-test suite:
 
 ```powershell
 python -m pip install -r .\requirements-retrieval.txt
@@ -71,6 +71,114 @@ python -m unittest discover -s tests -v
 
 If optional dependencies are missing, their tests are reported as skipped;
 the complete verification run should finish with no skipped tests.
+
+## Complete rebuild path
+
+The full route starts from the four public manufacturer PDFs; the repository
+does not redistribute those PDFs or the large MinerU outputs.
+
+Create the isolated project and MinerU environments:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\setup_project.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\setup_mineru.ps1
+```
+
+Run every stage—official download and SHA-256 verification, MinerU parsing,
+strict normalization, chunking, five indexes, evaluation, audits, and tests:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\run_full_pipeline.py
+```
+
+Completed MinerU documents are skipped through their `_SUCCESS.json` markers.
+Useful restart examples:
+
+```powershell
+# Reuse already verified PDFs and successful MinerU outputs.
+.\.venv\Scripts\python.exe .\scripts\run_full_pipeline.py `
+  --from-stage import `
+  --skip-download `
+  --skip-mineru
+
+# Rebuild only indexes, metrics, audits, and tests.
+.\.venv\Scripts\python.exe .\scripts\run_full_pipeline.py `
+  --from-stage indexes
+```
+
+The PDF integrity lock is
+`data/manifests/manual_checksums.json`. MinerU is pinned separately in
+`requirements-mineru.txt` so its large parser/model dependency tree cannot
+conflict with the retrieval and Gradio environment. The latest verified run
+is recorded in `outputs/metrics/full_pipeline_run.json`.
+
+## Optional grounded LLM/VLM generation
+
+The default path stays fully offline and returns extractive, cited evidence.
+To use a Responses-compatible LLM/VLM for final wording, set the backend,
+model, and API key, then run the same text command:
+
+```powershell
+$env:AUTOMANUAL_GENERATION_BACKEND = "responses"
+$env:AUTOMANUAL_GENERATION_MODEL = "<your text-and-image model>"
+$env:OPENAI_API_KEY = "<your API key>"
+.\.venv\Scripts\python.exe .\scripts\answer_question.py `
+  "How do I adjust the steering wheel?" `
+  --model Bronco `
+  --year 2026
+```
+
+For image-grounded questions, provide an image and mandatory vehicle metadata:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\answer_image_question.py `
+  .\path\to\query.png `
+  --question "What control is this and how is it used?" `
+  --model Bronco `
+  --year 2026
+```
+
+Retrieved text and images are labeled as an Evidence Pack. Generated answers
+must cite valid `[n]` evidence identifiers; API errors or failed grounding
+checks fall back to the offline result. Remote endpoints must use HTTPS, while
+loopback HTTP is allowed for a company-hosted compatible service.
+
+## FastAPI and Docker deployment
+
+Launch the JSON API locally:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\launch_api.py
+```
+
+Open `http://127.0.0.1:8000/docs` for the generated OpenAPI interface. The
+service exposes `GET /health`, `POST /v1/text`, `POST /v1/image`, and
+`POST /v1/table`. Every question request requires vehicle model and year; the
+server resolves them to exactly one corpus manual before retrieval.
+
+Example text request:
+
+```powershell
+$body = @{
+  query = "How do I adjust the steering wheel?"
+  vehicle = @{ model = "Bronco"; year = "2026" }
+} | ConvertTo-Json
+Invoke-RestMethod http://127.0.0.1:8000/v1/text `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body $body
+```
+
+The container image contains only code and the small corpus manifest. Large
+local artifacts remain outside the image and are mounted read-only:
+
+```powershell
+docker compose up --build
+```
+
+`compose.yaml` mounts `data/indexes` and `data/parsed`, binds the API only to
+localhost, and forwards the optional generation environment variables.
+Build all local indexes before starting the container.
 
 The verified local import currently contains:
 
@@ -332,7 +440,7 @@ python .\scripts\answer_question.py `
 The output preserves ordered steps and Warning/Caution blocks and cites the
 vehicle, year, section path, and one-based physical PDF page. Procedure
 questions are refused when retrieval only finds a related term but no
-executable procedure. The current backend is deliberately extractive:
+executable procedure. The default offline backend is deliberately extractive:
 `extractive_evidence_v1` does not call an LLM or claim to paraphrase the
 manual.
 

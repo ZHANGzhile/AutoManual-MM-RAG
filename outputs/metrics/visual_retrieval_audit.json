@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29T21:54:36.439555+00:00",
+  "generated_at": "2026-07-31T23:33:57.729322+00:00",
   "status": "pass",
   "resources": {
     "raw_jpg_files": 3803,
@@ -15,7 +15,7 @@
     "semantic_embedding": false,
     "neural_embedding": false,
     "index_path": "data/indexes/visual_traditional.npz",
-    "index_size_bytes": 9643496,
+    "index_size_bytes": 9643500,
     "element_count": 3287,
     "dimensions": 1296,
     "embedding_shape": [
