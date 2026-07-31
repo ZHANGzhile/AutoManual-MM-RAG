@@ -6,6 +6,28 @@ MinerU output normalization, evidence-preserving JSONL, and auditable
 BM25/Dense/RRF text baselines, traditional visual retrieval, and an
 evidence-constrained extractive answer/demo layer.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    PDF["4 official owner-manual PDFs"] --> MinerU["MinerU parse"]
+    MinerU --> Schema["Normalized elements + metadata"]
+    Schema --> Text["Text chunks"]
+    Schema --> Tables["Table crops + verified rows"]
+    Schema --> Images["Image assets"]
+    Text --> BM25["BM25"]
+    Text --> Dense["Dense LSA"]
+    BM25 --> RRF["RRF + deterministic reranking"]
+    Dense --> RRF
+    Tables --> Evidence["Evidence Pack"]
+    Images --> Visual["Visual retrieval"]
+    RRF --> Evidence
+    Visual --> Evidence
+    Evidence --> Guard["Context, score, and applicability guards"]
+    Guard --> Answer["Cited answer or explicit refusal"]
+    Answer --> Demo["Gradio text / image / table demo"]
+```
+
 ## Current corpus stage
 
 Four official Ford manuals have been parsed locally with MinerU 3.4.4
@@ -39,7 +61,7 @@ their caption/footnote when present plus nearest same-page text. No VLM calls
 are made during import.
 
 The importer, chunker, and BM25 core use the Python standard library. Install
-the retrieval and visual extras before running the complete 37-test suite:
+the retrieval and visual extras before running the complete 38-test suite:
 
 ```powershell
 python -m pip install -r .\requirements-retrieval.txt
@@ -353,3 +375,17 @@ table crops. Generated indexes remain local and must exist under
 `data/indexes/`; rebuild them with the commands above if needed. The server
 binds only to localhost unless a different `--host` or `--share` is explicitly
 supplied.
+
+### Demo evidence
+
+The screenshots below were captured from the local app against the real
+indexes, not mocked UI data:
+
+- [Cited text procedure and Warning](outputs/screenshots/demo-text-answer.png)
+- [Image + text-hint retrieval](outputs/screenshots/demo-image-search.png)
+- [Verified exact table value and source crop](outputs/screenshots/demo-table-answer.png)
+
+![Image-to-manual retrieval demo](outputs/screenshots/demo-image-search.png)
+
+The exact inputs, expected behavior, and evidence checks for all three flows
+are recorded in [`outputs/demo_cases/README.md`](outputs/demo_cases/README.md).

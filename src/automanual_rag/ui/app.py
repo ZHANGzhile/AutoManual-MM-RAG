@@ -207,13 +207,32 @@ class DemoService:
             return "", [], [], f"Error: {exc}"
 
         gallery: list[tuple[str, str]] = []
+        shown_assets: set[str] = set()
+        for item in answer_result["evidence"]:
+            asset_path = str(item["asset_path"])
+            if asset_path in shown_assets:
+                continue
+            shown_assets.add(asset_path)
+            asset = (self.project_root / asset_path).resolve()
+            caption = (
+                f"Verified source [{item['citation_id']}] · "
+                f"p.{item['page_no']} · "
+                f"{' > '.join(item['section_path'])}"
+            )
+            gallery.append((str(asset), caption))
         for item in crop_results:
-            asset = (self.project_root / item["asset_path"]).resolve()
+            asset_path = str(item["asset_path"])
+            if asset_path in shown_assets:
+                continue
+            shown_assets.add(asset_path)
+            asset = (self.project_root / asset_path).resolve()
             caption = (
                 f"#{item['rank']} · p.{item['page_no']} · "
                 f"{' > '.join(item['section_path'])}"
             )
             gallery.append((str(asset), caption))
+            if len(gallery) >= 5:
+                break
         rows = [
             [
                 item["citation_id"],
@@ -311,7 +330,11 @@ def create_demo(service: DemoService) -> Any:
             )
             image_button = gr.Button("Search image", variant="primary")
             image_status = gr.Markdown()
-            gallery = gr.Gallery(label="Matching manual images", columns=3)
+            gallery = gr.Gallery(
+                label="Matching manual images",
+                columns=3,
+                object_fit="contain",
+            )
             visual_evidence = gr.Dataframe(
                 headers=VISUAL_COLUMNS,
                 datatype=["number", "str", "number", "str", "str", "str"],
@@ -340,6 +363,8 @@ def create_demo(service: DemoService) -> Any:
             table_gallery = gr.Gallery(
                 label="Matching table crops",
                 columns=2,
+                height=520,
+                object_fit="contain",
             )
             table_evidence = gr.Dataframe(
                 headers=TABLE_COLUMNS,

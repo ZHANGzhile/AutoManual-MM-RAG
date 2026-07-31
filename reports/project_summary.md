@@ -1,0 +1,40 @@
+# AutoManual-MM-RAG project summary
+
+## Delivered MVP
+
+- Four official Ford 2026 North American English owner manuals.
+- 30,131 normalized elements, including 3,287 images and 516 table crops.
+- Page/section/vehicle provenance and metadata hard filters throughout.
+- BM25, dense LSA, RRF hybrid, traditional visual, table-crop, and curated
+  table-row retrieval.
+- Evidence-constrained extractive answers with citations, ordered-step and
+  Warning preservation, refusal behavior, and a three-tab Gradio demo.
+- 38 passing automated tests and reproducible offline evaluation artifacts.
+
+## Measured results
+
+| Evaluation | Result |
+|---|---:|
+| BM25 Recall@10 | 0.9615 |
+| Visual + text-hint Recall@1 | 1.0000 |
+| Text answer/refusal decision accuracy | 0.9667 |
+| Text no-answer accuracy | 1.0000 |
+| Table-crop Recall@1 | 1.0000 |
+| Verified-row exact-value coverage | 1.0000 |
+| Verified-row no-answer accuracy | 1.0000 |
+| Metadata filter violations | 0 |
+
+The visual and table figures are development-set results. The table-value
+benchmark covers 23 manually verified rows from nine selected source tables;
+it is not a claim of general OCR over all 516 crops.
+
+## Portfolio-ready description
+
+- Built a traceable multimodal RAG system over four automotive owner manuals,
+  normalizing 30K+ text, image, and table elements with vehicle-level hard
+  filters and physical-page citations.
+- Implemented BM25/dense/RRF and image retrieval plus evidence-constrained
+  answering; achieved 0.9615 BM25 Recall@10, 1.0000 image+text Recall@1, and
+  zero cross-vehicle metadata violations on the development evaluations.
+- Added verified table-row answering with source-image hashes, applicability
+  guards, explicit refusal behavior, a Gradio demo, and 38 passing tests.
