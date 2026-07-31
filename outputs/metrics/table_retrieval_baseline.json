@@ -1,0 +1,271 @@
+{
+  "generated_at": "2026-07-31T21:51:45.955005+00:00",
+  "backend": "sqlite_fts5_table_context",
+  "index_path": "data/indexes/tables.sqlite3",
+  "questions": "data/eval/table_questions.jsonl",
+  "query_count": 12,
+  "indexed_tables": 516,
+  "structured_tables": 0,
+  "metrics": {
+    "recall_at_1": 1.0,
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "mrr_at_10": 1.0,
+    "metadata_filter_violations": 0
+  },
+  "category_metrics": {
+    "capacity": {
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "charging": {
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "fluid": {
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "load_capacity": {
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "specification": {
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "tire": {
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    "torque": {
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    }
+  },
+  "limitations": [
+    "The index searches section, caption, and adjacent text.",
+    "Table cells are not structured and row values are not indexed.",
+    "The benchmark measures table-crop localization, not value QA."
+  ],
+  "details": [
+    {
+      "query_id": "bronco_table_001",
+      "category": "load_capacity",
+      "gold_element_id": "ford_bronco_2026_na_en:p0294:table:005812:e64f9df6c8b7db03",
+      "gold_page_no": 294,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_bronco_2026_na_en:p0294:table:005812:e64f9df6c8b7db03",
+        "page_no": 294,
+        "section_path": [
+          "Load Carrying",
+          "ROOF RACK LOAD CAPACITIES"
+        ],
+        "score": 30.609943362431018
+      }
+    },
+    {
+      "query_id": "bronco_table_002",
+      "category": "specification",
+      "gold_element_id": "ford_bronco_2026_na_en:p0368:table:007160:964b33686d28e8ea",
+      "gold_page_no": 368,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_bronco_2026_na_en:p0368:table:007160:964b33686d28e8ea",
+        "page_no": 368,
+        "section_path": [
+          "Maintenance",
+          "EXTERIOR BULB SPECIFICATIONCHART"
+        ],
+        "score": 17.899393227542056
+      }
+    },
+    {
+      "query_id": "bronco_table_003",
+      "category": "torque",
+      "gold_element_id": "ford_bronco_2026_na_en:p0464:table:008759:94ad45fbae19ab21",
+      "gold_page_no": 464,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_bronco_2026_na_en:p0464:table:008759:94ad45fbae19ab21",
+        "page_no": 464,
+        "section_path": [
+          "Changing a Road Wheel",
+          "Wheel Nut Torque Specifications"
+        ],
+        "score": 21.17981528335421
+      }
+    },
+    {
+      "query_id": "f150_table_004",
+      "category": "charging",
+      "gold_element_id": "ford_f150_lightning_2026_na_en:p0209:table:004180:517011e5268a3fa4",
+      "gold_page_no": 209,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_f150_lightning_2026_na_en:p0209:table:004180:517011e5268a3fa4",
+        "page_no": 209,
+        "section_path": [
+          "Charging Your Vehicle",
+          "CHARGING EQUIPMENT OVERVIEW (IF EQUIPPED)"
+        ],
+        "score": 14.721148417634584
+      }
+    },
+    {
+      "query_id": "f150_table_005",
+      "category": "charging",
+      "gold_element_id": "ford_f150_lightning_2026_na_en:p0218:table:004322:a175e4e0adcef5b6",
+      "gold_page_no": 218,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_f150_lightning_2026_na_en:p0218:table:004322:a175e4e0adcef5b6",
+        "page_no": 218,
+        "section_path": [
+          "Charging Your Vehicle",
+          "Ground Leakage Fault"
+        ],
+        "score": 25.184812093563643
+      }
+    },
+    {
+      "query_id": "f150_table_006",
+      "category": "tire",
+      "gold_element_id": "ford_f150_lightning_2026_na_en:p0498:table:009603:63b08f625428f753",
+      "gold_page_no": 498,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_f150_lightning_2026_na_en:p0498:table:009603:63b08f625428f753",
+        "page_no": 498,
+        "section_path": [
+          "Tire Pressure Monitoring System",
+          "Trailer Tire Pressure Monitoring System"
+        ],
+        "score": 26.311402839002877
+      }
+    },
+    {
+      "query_id": "mache_table_007",
+      "category": "charging",
+      "gold_element_id": "ford_mache_2026_na_en:p0165:table:003224:54a871fff46735ee",
+      "gold_page_no": 165,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_mache_2026_na_en:p0165:table:003224:54a871fff46735ee",
+        "page_no": 165,
+        "section_path": [
+          "Charging Your Vehicle",
+          "CHARGING EQUIPMENT OVERVIEW (IF EQUIPPED)"
+        ],
+        "score": 14.764844987179211
+      }
+    },
+    {
+      "query_id": "mache_table_008",
+      "category": "charging",
+      "gold_element_id": "ford_mache_2026_na_en:p0183:table:003554:1711ea2058505260",
+      "gold_page_no": 183,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_mache_2026_na_en:p0183:table:003554:1711ea2058505260",
+        "page_no": 183,
+        "section_path": [
+          "Charging Your Vehicle",
+          "Charge Speed Limitation Status"
+        ],
+        "score": 24.514734124301754
+      }
+    },
+    {
+      "query_id": "mache_table_009",
+      "category": "tire",
+      "gold_element_id": "ford_mache_2026_na_en:p0372:table:006976:ee3f1ddd6edcf7c3",
+      "gold_page_no": 372,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_mache_2026_na_en:p0372:table:006976:ee3f1ddd6edcf7c3",
+        "page_no": 372,
+        "section_path": [
+          "Tire Pressure Monitoring System",
+          "TIRE PRESSURE MONITORING SYSTEM – TROUBLESHOOTING"
+        ],
+        "score": 25.554062790808324
+      }
+    },
+    {
+      "query_id": "maverick_table_010",
+      "category": "fluid",
+      "gold_element_id": "ford_maverick_2026_na_en:p0089:table:001663:f4b5fe8e806a25a8",
+      "gold_page_no": 89,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_maverick_2026_na_en:p0089:table:001663:f4b5fe8e806a25a8",
+        "page_no": 89,
+        "section_path": [
+          "Wipers and Washers",
+          "WASHER FLUID SPECIFICATION"
+        ],
+        "score": 19.02017956574097
+      }
+    },
+    {
+      "query_id": "maverick_table_011",
+      "category": "capacity",
+      "gold_element_id": "ford_maverick_2026_na_en:p0169:table:003345:9b450545a9a8dbcc",
+      "gold_page_no": 169,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_maverick_2026_na_en:p0169:table:003345:9b450545a9a8dbcc",
+        "page_no": 169,
+        "section_path": [
+          "Fuel and Refueling",
+          "FUEL TANK CAPACITY - EXCLUDING: FULL HYBRID ELECTRIC VEHICLE (FHEV)"
+        ],
+        "score": 28.285692052603782
+      }
+    },
+    {
+      "query_id": "maverick_table_012",
+      "category": "torque",
+      "gold_element_id": "ford_maverick_2026_na_en:p0422:table:007887:aa972a5fc3b5f80e",
+      "gold_page_no": 422,
+      "first_relevant_rank": 1,
+      "metadata_filter_violations": 0,
+      "top_result": {
+        "element_id": "ford_maverick_2026_na_en:p0422:table:007887:aa972a5fc3b5f80e",
+        "page_no": 422,
+        "section_path": [
+          "Changing a Road Wheel",
+          "WHEEL NUTS"
+        ],
+        "score": 11.449301925374959
+      }
+    }
+  ]
+}

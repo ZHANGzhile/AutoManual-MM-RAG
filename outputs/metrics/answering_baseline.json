@@ -1,0 +1,1199 @@
+{
+  "generated_at": "2026-07-31T21:51:45.834666+00:00",
+  "backend": "extractive_evidence_v1",
+  "index_path": "data/indexes/bm25.sqlite3",
+  "questions": "data/eval/questions.jsonl",
+  "question_count": 30,
+  "answerable_questions": 26,
+  "no_answer_questions": 4,
+  "configuration": {
+    "retrieval_limit": 10,
+    "max_evidence": 3,
+    "min_bm25_score": 12.0,
+    "min_confidence": 0.55
+  },
+  "metrics": {
+    "decision_accuracy": 0.9666666666666667,
+    "answerable_response_rate": 0.9615384615384616,
+    "citation_recall": 0.8846153846153846,
+    "no_answer_accuracy": 1.0,
+    "metadata_filter_violations": 0
+  },
+  "limitations": [
+    "Answers are extractive evidence quotes, not LLM generation.",
+    "Citation recall checks Gold element membership.",
+    "Answer semantic accuracy is not scored in this baseline."
+  ],
+  "details": [
+    {
+      "question_id": "bronco_proc_001",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.7625,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:4d6eb0f0ccde9cda",
+          "retrieval_rank": 1,
+          "rerank_score": 0.7625,
+          "page_nos": [
+            84
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:a733070acecbd30e",
+          "retrieval_rank": 3,
+          "rerank_score": 0.7125,
+          "page_nos": [
+            84
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:steps:f8a445c3c3d166d2",
+          "retrieval_rank": 2,
+          "rerank_score": 0.704167,
+          "page_nos": [
+            85
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "bronco_meta_002",
+      "category": "metadata_isolation",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.948933,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:steps:f2ab197992fee256",
+          "retrieval_rank": 1,
+          "rerank_score": 0.948933,
+          "page_nos": [
+            89
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:warning:9c997933f5d2d484",
+          "retrieval_rank": 2,
+          "rerank_score": 0.931381,
+          "page_nos": [
+            89
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:note:f03092ad543e20ad",
+          "retrieval_rank": 3,
+          "rerank_score": 0.916588,
+          "page_nos": [
+            89
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "bronco_proc_003",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 1.0,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:steps:5aa50017efc5bd72",
+          "retrieval_rank": 1,
+          "rerank_score": 1.0,
+          "page_nos": [
+            262
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:warning:c8b0722451856c94",
+          "retrieval_rank": 2,
+          "rerank_score": 1.0,
+          "page_nos": [
+            262
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:18d4b9f05c78ca52",
+          "retrieval_rank": 3,
+          "rerank_score": 1.0,
+          "page_nos": [
+            262
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "bronco_proc_004",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.83,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:steps:e16c1e50549807d5",
+          "retrieval_rank": 1,
+          "rerank_score": 0.83,
+          "page_nos": [
+            293
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:steps:159d9dfa50e627ee",
+          "retrieval_rank": 2,
+          "rerank_score": 0.805,
+          "page_nos": [
+            294
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:steps:e59808cf4a11e92d",
+          "retrieval_rank": 3,
+          "rerank_score": 0.77375,
+          "page_nos": [
+            293
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "bronco_fact_005",
+      "category": "fact",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.892857,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:40beba2a8489bd2f",
+          "retrieval_rank": 1,
+          "rerank_score": 0.892857,
+          "page_nos": [
+            222
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:warning:370636e1a0459f59",
+          "retrieval_rank": 6,
+          "rerank_score": 0.759125,
+          "page_nos": [
+            222
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:f4279f9be0ade3f8",
+          "retrieval_rank": 8,
+          "rerank_score": 0.723049,
+          "page_nos": [
+            222
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "bronco_image_006",
+      "category": "image_grounded",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.693831,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:8430fb39920e02c7",
+          "retrieval_rank": 1,
+          "rerank_score": 0.693831,
+          "page_nos": [
+            85
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:756ea30043afba18",
+          "retrieval_rank": 3,
+          "rerank_score": 0.472079,
+          "page_nos": [
+            29
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:note:f44d30a6c380b42c",
+          "retrieval_rank": 2,
+          "rerank_score": 0.464484,
+          "page_nos": [
+            83
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "f150_meta_007",
+      "category": "metadata_isolation",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.951673,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:steps:ca23440e2c37cc01",
+          "retrieval_rank": 1,
+          "rerank_score": 0.951673,
+          "page_nos": [
+            111
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:68ff81db86e82d0e",
+          "retrieval_rank": 2,
+          "rerank_score": 0.939168,
+          "page_nos": [
+            111
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:warning:67e945566117934a",
+          "retrieval_rank": 3,
+          "rerank_score": 0.938554,
+          "page_nos": [
+            111
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "f150_safety_008",
+      "category": "safety",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.780599,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:065f21f7822b011a",
+          "retrieval_rank": 1,
+          "rerank_score": 0.780599,
+          "page_nos": [
+            219
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:caution:81e3f5e519d15a3c",
+          "retrieval_rank": 2,
+          "rerank_score": 0.648899,
+          "page_nos": [
+            219
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:2c3cfd03a11f5371",
+          "retrieval_rank": 3,
+          "rerank_score": 0.643995,
+          "page_nos": [
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "f150_image_009",
+      "category": "image_grounded",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.71,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:795abaaec35dbbce",
+          "retrieval_rank": 1,
+          "rerank_score": 0.71,
+          "page_nos": [
+            214
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:1b3f26b1573c60c5",
+          "retrieval_rank": 2,
+          "rerank_score": 0.629349,
+          "page_nos": [
+            219
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:60b54ca98a75c2cc",
+          "retrieval_rank": 3,
+          "rerank_score": 0.601682,
+          "page_nos": [
+            219
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "f150_proc_010",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.93,
+      "citation_hit": false,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:687e456a763bf188",
+          "retrieval_rank": 1,
+          "rerank_score": 0.93,
+          "page_nos": [
+            57
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:22324492fd325ffd",
+          "retrieval_rank": 2,
+          "rerank_score": 0.863333,
+          "page_nos": [
+            43
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:steps:b274ec5ba8fca8fe",
+          "retrieval_rank": 10,
+          "rerank_score": 0.857619,
+          "page_nos": [
+            57
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "f150_proc_011",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.853049,
+      "citation_hit": false,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:d615ca971fdfb0ac",
+          "retrieval_rank": 2,
+          "rerank_score": 0.853049,
+          "page_nos": [
+            97
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:752a1244176b77a8",
+          "retrieval_rank": 1,
+          "rerank_score": 0.80339,
+          "page_nos": [
+            104
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:steps:14119bcae17403cb",
+          "retrieval_rank": 3,
+          "rerank_score": 0.790671,
+          "page_nos": [
+            103
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "f150_image_012",
+      "category": "image_grounded",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.80625,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:e024f5cacfb4bbd4",
+          "retrieval_rank": 1,
+          "rerank_score": 0.80625,
+          "page_nos": [
+            365
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:fe2ed3c3dec86cac",
+          "retrieval_rank": 2,
+          "rerank_score": 0.734902,
+          "page_nos": [
+            365
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:4e3809a3d1dd2e41",
+          "retrieval_rank": 3,
+          "rerank_score": 0.490872,
+          "page_nos": [
+            363
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "mache_meta_013",
+      "category": "metadata_isolation",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.934364,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_mache_2026_na_en:chunk:steps:1814294fb089a87c",
+          "retrieval_rank": 1,
+          "rerank_score": 0.934364,
+          "page_nos": [
+            95
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_mache_2026_na_en:chunk:warning:4c9e97aacb0c46ee",
+          "retrieval_rank": 2,
+          "rerank_score": 0.916449,
+          "page_nos": [
+            95
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_mache_2026_na_en:chunk:note:15f3661573b168df",
+          "retrieval_rank": 3,
+          "rerank_score": 0.897816,
+          "page_nos": [
+            95
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "mache_safety_014",
+      "category": "safety",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.776843,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:93dd1195d6ca1386",
+          "retrieval_rank": 1,
+          "rerank_score": 0.776843,
+          "page_nos": [
+            175
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_mache_2026_na_en:chunk:caution:e576db0972bb602e",
+          "retrieval_rank": 2,
+          "rerank_score": 0.616777,
+          "page_nos": [
+            175
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:d753a24eacd93a1e",
+          "retrieval_rank": 3,
+          "rerank_score": 0.549846,
+          "page_nos": [
+            186
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "mache_image_015",
+      "category": "image_grounded",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.71,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:32386cbe505add93",
+          "retrieval_rank": 1,
+          "rerank_score": 0.71,
+          "page_nos": [
+            170
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_mache_2026_na_en:chunk:note:81a88c989b3005a6",
+          "retrieval_rank": 2,
+          "rerank_score": 0.62235,
+          "page_nos": [
+            175
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:b819f28dae597408",
+          "retrieval_rank": 4,
+          "rerank_score": 0.602287,
+          "page_nos": [
+            243
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "mache_proc_016",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.971667,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:fa2f0874a89fec8e",
+          "retrieval_rank": 1,
+          "rerank_score": 0.971667,
+          "page_nos": [
+            45
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:268cf33a48392987",
+          "retrieval_rank": 2,
+          "rerank_score": 0.938333,
+          "page_nos": [
+            114
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_mache_2026_na_en:chunk:note:fbda1b94bd25c1ef",
+          "retrieval_rank": 3,
+          "rerank_score": 0.775,
+          "page_nos": [
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "mache_proc_017",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 1.0,
+      "citation_hit": false,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:b6897a93def4a361",
+          "retrieval_rank": 1,
+          "rerank_score": 1.0,
+          "page_nos": [
+            310
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_mache_2026_na_en:chunk:note:0fb449a0c75750e3",
+          "retrieval_rank": 2,
+          "rerank_score": 0.98,
+          "page_nos": [
+            310
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_mache_2026_na_en:chunk:steps:af800e495e56f506",
+          "retrieval_rank": 3,
+          "rerank_score": 0.98,
+          "page_nos": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "mache_fact_018",
+      "category": "fact",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.840807,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:e61ec3cc433fda6d",
+          "retrieval_rank": 1,
+          "rerank_score": 0.840807,
+          "page_nos": [
+            305
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:aa724390602b117a",
+          "retrieval_rank": 4,
+          "rerank_score": 0.705648,
+          "page_nos": [
+            120
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:44a8e1bb25fbe765",
+          "retrieval_rank": 2,
+          "rerank_score": 0.67499,
+          "page_nos": [
+            302
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_meta_019",
+      "category": "metadata_isolation",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.950018,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:f29ad811f2c073f5",
+          "retrieval_rank": 1,
+          "rerank_score": 0.950018,
+          "page_nos": [
+            85
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:warning:c52872c88ba69436",
+          "retrieval_rank": 2,
+          "rerank_score": 0.931381,
+          "page_nos": [
+            85
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:note:6e5e58f74c3a2ef0",
+          "retrieval_rank": 3,
+          "rerank_score": 0.916588,
+          "page_nos": [
+            85
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_proc_020",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.938333,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:b913a56df2b0cb86",
+          "retrieval_rank": 1,
+          "rerank_score": 0.938333,
+          "page_nos": [
+            81
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:b2b46bb2b2bf69ce",
+          "retrieval_rank": 2,
+          "rerank_score": 0.801839,
+          "page_nos": [
+            74
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:6476f02e0c57629f",
+          "retrieval_rank": 3,
+          "rerank_score": 0.730769,
+          "page_nos": [
+            79
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_fact_021",
+      "category": "fact",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.916667,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:note:2716d81bf9299977",
+          "retrieval_rank": 1,
+          "rerank_score": 0.916667,
+          "page_nos": [
+            81
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:6a3f88eb522257c2",
+          "retrieval_rank": 5,
+          "rerank_score": 0.8,
+          "page_nos": [
+            81
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:note:246f2f0639759b93",
+          "retrieval_rank": 2,
+          "rerank_score": 0.775,
+          "page_nos": [
+            80
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_proc_022",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.9675,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:0b84dfd463384903",
+          "retrieval_rank": 1,
+          "rerank_score": 0.9675,
+          "page_nos": [
+            89
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:note:32bbddff810d40d2",
+          "retrieval_rank": 3,
+          "rerank_score": 0.890475,
+          "page_nos": [
+            88
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:7b565d6a9f8f7573",
+          "retrieval_rank": 2,
+          "rerank_score": 0.832617,
+          "page_nos": [
+            90
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_proc_023",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.821667,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:8dff5d6b9d45442c",
+          "retrieval_rank": 1,
+          "rerank_score": 0.821667,
+          "page_nos": [
+            348
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:861e8e398703d5d8",
+          "retrieval_rank": 2,
+          "rerank_score": 0.805,
+          "page_nos": [
+            348
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:note:405fc6b7a6ad449c",
+          "retrieval_rank": 3,
+          "rerank_score": 0.520571,
+          "page_nos": [
+            347
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_fact_024",
+      "category": "fact",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 1.0,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:ed70e9a200df476a",
+          "retrieval_rank": 1,
+          "rerank_score": 1.0,
+          "page_nos": [
+            73
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:86e4a9c4fa897b2e",
+          "retrieval_rank": 2,
+          "rerank_score": 0.96515,
+          "page_nos": [
+            73
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:6e714dd26c2adbd6",
+          "retrieval_rank": 3,
+          "rerank_score": 0.708274,
+          "page_nos": [
+            73
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_proc_025",
+      "category": "procedure",
+      "expected_answerable": true,
+      "status": "answered",
+      "reason": "sufficient_retrieved_evidence",
+      "confidence": 0.70625,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:warning:bf84001765f62646",
+          "retrieval_rank": 2,
+          "rerank_score": 0.70625,
+          "page_nos": [
+            71
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:bc11c9290022cfe9",
+          "retrieval_rank": 1,
+          "rerank_score": 0.6625,
+          "page_nos": [
+            71
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:warning:ba7fcf8bd1d1662d",
+          "retrieval_rank": 3,
+          "rerank_score": 0.6625,
+          "page_nos": [
+            71
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "maverick_image_026",
+      "category": "image_grounded",
+      "expected_answerable": true,
+      "status": "insufficient_evidence",
+      "reason": "evidence_below_threshold",
+      "confidence": 0.507281,
+      "citation_hit": true,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:f8f64f2b61d482c8",
+          "retrieval_rank": 5,
+          "rerank_score": 0.507281,
+          "page_nos": [
+            178
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:c511bb33940c0416",
+          "retrieval_rank": 1,
+          "rerank_score": 0.460766,
+          "page_nos": [
+            348
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:4570139a00d2ba9d",
+          "retrieval_rank": 4,
+          "rerank_score": 0.454864,
+          "page_nos": [
+            219
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "noanswer_f150_027",
+      "category": "no_answer",
+      "expected_answerable": false,
+      "status": "insufficient_evidence",
+      "reason": "evidence_below_threshold",
+      "confidence": 0.276888,
+      "citation_hit": false,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:3e66f2166e0e22f5",
+          "retrieval_rank": 1,
+          "rerank_score": 0.276888,
+          "page_nos": [
+            587
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:note:154e164d8eab5d16",
+          "retrieval_rank": 2,
+          "rerank_score": 0.208583,
+          "page_nos": [
+            136
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_f150_lightning_2026_na_en:chunk:text:5f0e9fa7cd856e06",
+          "retrieval_rank": 3,
+          "rerank_score": 0.194077,
+          "page_nos": [
+            575
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "noanswer_mache_028",
+      "category": "no_answer",
+      "expected_answerable": false,
+      "status": "insufficient_evidence",
+      "reason": "evidence_below_threshold",
+      "confidence": 0.3253,
+      "citation_hit": false,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:0b188b4c9624bd39",
+          "retrieval_rank": 1,
+          "rerank_score": 0.3253,
+          "page_nos": [
+            152
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_mache_2026_na_en:chunk:warning:acff0d218090c732",
+          "retrieval_rank": 4,
+          "rerank_score": 0.242832,
+          "page_nos": [
+            164
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_mache_2026_na_en:chunk:text:3ddf912c68519c2a",
+          "retrieval_rank": 5,
+          "rerank_score": 0.23882,
+          "page_nos": [
+            165
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "noanswer_maverick_029",
+      "category": "no_answer",
+      "expected_answerable": false,
+      "status": "insufficient_evidence",
+      "reason": "evidence_below_threshold",
+      "confidence": 0.645597,
+      "citation_hit": false,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:3b3ca4a30538951d",
+          "retrieval_rank": 1,
+          "rerank_score": 0.645597,
+          "page_nos": [
+            320
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:text:f9e23a1f268ee7b5",
+          "retrieval_rank": 4,
+          "rerank_score": 0.497477,
+          "page_nos": [
+            185
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_maverick_2026_na_en:chunk:steps:92f0f9adf7e50030",
+          "retrieval_rank": 7,
+          "rerank_score": 0.487797,
+          "page_nos": [
+            382
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "noanswer_bronco_030",
+      "category": "no_answer",
+      "expected_answerable": false,
+      "status": "insufficient_evidence",
+      "reason": "procedure_not_supported",
+      "confidence": 0.620634,
+      "citation_hit": false,
+      "metadata_violations": 0,
+      "evidence": [
+        {
+          "citation_id": 1,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:text:dbdc4abb5441a48a",
+          "retrieval_rank": 1,
+          "rerank_score": 0.620634,
+          "page_nos": [
+            549
+          ]
+        },
+        {
+          "citation_id": 2,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:warning:adbed49069dc5834",
+          "retrieval_rank": 2,
+          "rerank_score": 0.527838,
+          "page_nos": [
+            335
+          ]
+        },
+        {
+          "citation_id": 3,
+          "chunk_id": "ford_bronco_2026_na_en:chunk:steps:f133dd7554ea80b7",
+          "retrieval_rank": 8,
+          "rerank_score": 0.3849,
+          "page_nos": [
+            94
+          ]
+        }
+      ]
+    }
+  ]
+}

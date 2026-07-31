@@ -3,7 +3,8 @@
 Traceable multimodal retrieval over official automotive owner manuals. The
 current stage provides a verified Ford 2026 North American English corpus,
 MinerU output normalization, evidence-preserving JSONL, and auditable
-BM25/Dense/RRF text baselines plus a traditional visual-retrieval MVP.
+BM25/Dense/RRF text baselines, traditional visual retrieval, and an
+evidence-constrained extractive answer/demo layer.
 
 ## Current corpus stage
 
@@ -38,7 +39,7 @@ their caption/footnote when present plus nearest same-page text. No VLM calls
 are made during import.
 
 The importer, chunker, and BM25 core use the Python standard library. Install
-the retrieval and visual extras before running the complete 19-test suite:
+the retrieval and visual extras before running the complete 37-test suite:
 
 ```powershell
 python -m pip install -r .\requirements-retrieval.txt
@@ -215,4 +216,140 @@ than general cross-domain visual semantics. See
 `reports/visual_retrieval_mvp.md` and
 `outputs/metrics/visual_retrieval_audit.json`.
 
-Table-row indexes are not implemented yet.
+## Table-crop evidence retrieval
+
+All 516 normalized table elements have a valid crop image, page, section, and
+adjacent-text context, but this fast MinerU parse produced zero structured
+cell tables. The table backend therefore indexes traceable table context and
+returns the original crop; it does not claim to expose row values.
+
+Build the local SQLite FTS5 table index:
+
+```powershell
+python .\scripts\build_table_index.py
+```
+
+Search under the same metadata hard filters:
+
+```powershell
+python .\scripts\search_tables.py `
+  "roof rack load capacity" `
+  --model Bronco `
+  --year 2026
+```
+
+Evaluate 12 curated table-localization queries:
+
+```powershell
+python .\scripts\evaluate_tables.py
+```
+
+Current results are Recall@1/5/10 `1.0000`, MRR@10 `1.0000`, and zero
+metadata violations. These queries closely match section topics, so the
+benchmark only validates table-crop localization. It does not validate OCR,
+cell extraction, units, or value answering. See
+`reports/table_retrieval_baseline.md`.
+
+Broad automatic row-level indexing remains blocked on structured table
+content. The safe MVP upgrade below covers only tables needed by the final
+demo questions.
+
+### Curated exact-value table rows
+
+For the final demo path, 23 rows from nine high-value table crops were
+manually transcribed and visually verified. Each row records its source table
+element, vehicle metadata, physical PDF page, original crop, SHA-256, and
+verification date. This covers selected roof-load, wheel-torque, charging,
+fuel-capacity, washer-fluid, and charge-status questions.
+
+Build the curated row index and verify every source image hash:
+
+```powershell
+python .\scripts\build_table_row_index.py
+```
+
+Ask an exact-value question:
+
+```powershell
+python .\scripts\answer_table_question.py `
+  "What is the non-hybrid Maverick fuel tank capacity?" `
+  --model Maverick `
+  --year 2026
+```
+
+Evaluate 17 curated row questions (13 answerable and four refusal cases):
+
+```powershell
+python .\scripts\evaluate_table_rows.py
+```
+
+The current development-set Row Recall@1/5, decision accuracy, no-answer
+accuracy, and expected-value coverage are all `1.0000`, with zero metadata
+violations. The overall answer rate is `0.7647` because the four deliberately
+unanswerable cases are refused. This result applies only to the 23 verified
+rows and must not be presented as general OCR over all 516 tables. See
+`reports/table_row_answering.md`.
+
+## Evidence-constrained answers
+
+The answer layer turns filtered BM25 results into a portable Evidence Pack,
+applies a small deterministic reranker, and either quotes the selected manual
+evidence with citations or refuses. It requires an exact document ID or both
+model and year, so evidence from different vehicles cannot be mixed.
+
+Run a text question end to end:
+
+```powershell
+python .\scripts\answer_question.py `
+  "How do I adjust the steering wheel?" `
+  --brand Ford `
+  --model Bronco `
+  --year 2026
+```
+
+The output preserves ordered steps and Warning/Caution blocks and cites the
+vehicle, year, section path, and one-based physical PDF page. Procedure
+questions are refused when retrieval only finds a related term but no
+executable procedure. The current backend is deliberately extractive:
+`extractive_evidence_v1` does not call an LLM or claim to paraphrase the
+manual.
+
+Evaluate answer/refusal decisions and Gold citation membership:
+
+```powershell
+python .\scripts\evaluate_answering.py
+```
+
+Current 30-question descriptive results:
+
+| Metric | Result |
+|---|---:|
+| Answer/refusal decision accuracy | 0.9667 |
+| Answerable response rate | 0.9615 |
+| Gold citation recall in the three-item Evidence Pack | 0.8846 |
+| No-answer accuracy | 1.0000 |
+| Metadata filter violations | 0 |
+
+These questions are the project development set, not an untouched test set.
+The metrics validate wiring, refusal behavior, and citation membership; they
+do not measure generated-answer semantics. See
+`reports/answering_baseline.md` and
+`outputs/metrics/answering_baseline.json`.
+
+## Local Gradio demo
+
+The local demo exposes the same answer interface plus visual-only/optional
+text-hint image retrieval and table-crop search:
+
+```powershell
+python -m pip install -r .\requirements-demo.txt
+python .\scripts\launch_demo.py
+```
+
+Open `http://127.0.0.1:7860`. The Text Question, Image Search, and Table Search
+tabs share the selected vehicle metadata. Table Search returns an exact value
+only when a verified row is strong enough; otherwise it falls back to source
+table crops. Generated indexes remain local and must exist under
+`data/indexes/`; rebuild them with the commands above if needed. The server
+binds only to localhost unless a different `--host` or `--share` is explicitly
+supplied.
