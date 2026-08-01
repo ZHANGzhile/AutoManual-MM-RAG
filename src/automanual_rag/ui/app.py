@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from automanual_rag.agentic import AgenticWorkflow
 from automanual_rag.answering import answer_question
 from automanual_rag.generation import (
     LabeledImage,
@@ -12,6 +13,7 @@ from automanual_rag.generation import (
     generate_or_fallback,
 )
 from automanual_rag.ingestion.mineru import load_manifest
+from automanual_rag.graphrag import GraphRetriever
 from automanual_rag.retrieval.bm25 import BM25Index
 from automanual_rag.retrieval.table import TableIndex
 from automanual_rag.retrieval.table_rows import TableRowIndex
@@ -79,6 +81,7 @@ class DemoService:
         table_index_path: Path,
         table_row_index_path: Path,
         visual_index_path: Path,
+        graph_index_path: Path | None = None,
     ) -> None:
         self.project_root = project_root.resolve()
         documents = load_manifest(manifest_path.resolve())
@@ -93,6 +96,21 @@ class DemoService:
             project_root=self.project_root,
         )
         self.generation = configured_backend()
+        self.agentic = (
+            AgenticWorkflow(
+                text_index=self.bm25,
+                graph_retriever=GraphRetriever(
+                    graph_index_path.resolve()
+                ),
+                visual_index=self.visual,
+                table_row_index=self.table_rows,
+                table_index=self.tables,
+                generation_backend=self.generation,
+                asset_root=self.project_root,
+            )
+            if graph_index_path is not None and graph_index_path.is_file()
+            else None
+        )
 
     @property
     def vehicle_choices(self) -> list[str]:
@@ -319,6 +337,54 @@ class DemoService:
             status,
         )
 
+    def answer_agentic(
+        self,
+        vehicle: str,
+        question: str,
+    ) -> tuple[str, str, list[list[Any]]]:
+        if self.agentic is None:
+            return (
+                "Agentic GraphRAG index is unavailable. Build it first.",
+                "",
+                [],
+            )
+        try:
+            document = self._document(vehicle)
+            result = self.agentic.run(
+                query=question,
+                filters=_filters(document),
+            )
+        except (OSError, RuntimeError, ValueError) as exc:
+            return f"Error: {exc}", "", []
+        trace = "\n".join(
+            [
+                "| # | Node | Status | Latency (ms) |",
+                "|---:|---|---|---:|",
+                *[
+                    f"| {item['sequence']} | {item['node']} | "
+                    f"{item['status']} | {item['latency_ms']:.1f} |"
+                    for item in result["trace"]
+                ],
+                "",
+                f"Route: `{result['initial_route']}`",
+                f"Retry count: `{result['retry_count']}`; "
+                f"total latency: `{result['latency_ms']:.1f} ms`.",
+            ]
+        )
+        rows = [
+            [
+                item["citation_id"],
+                f"{item['brand']} {item['model']} {item['year']}",
+                ", ".join(str(page) for page in item.get("page_nos", [])),
+                " > ".join(item.get("section_path", [])),
+                item.get("chunk_type", "evidence"),
+                item.get("retrieval_rank", 0),
+                f"{float(item.get('rerank_score', 0.0)):.3f}",
+            ]
+            for item in result["evidence"]
+        ]
+        return result["answer"], trace, rows
+
 
 def create_demo(service: DemoService) -> Any:
     """Build the Gradio Blocks app without starting a server."""
@@ -442,6 +508,49 @@ def create_demo(service: DemoService) -> Any:
                     table_gallery,
                     table_evidence,
                     table_status,
+                ],
+            )
+
+        with gr.Tab("Agentic GraphRAG"):
+            agentic_vehicle = gr.Dropdown(
+                choices=choices,
+                value=default_vehicle,
+                label="Vehicle",
+            )
+            agentic_question = gr.Textbox(
+                label="Multi-hop question",
+                placeholder=(
+                    "How do I adjust the steering wheel and what warning "
+                    "applies?"
+                ),
+                lines=2,
+            )
+            agentic_button = gr.Button(
+                "Run state graph", variant="primary"
+            )
+            agentic_answer = gr.Markdown()
+            agentic_trace = gr.Markdown()
+            agentic_evidence = gr.Dataframe(
+                headers=TEXT_COLUMNS,
+                datatype=[
+                    "number",
+                    "str",
+                    "str",
+                    "str",
+                    "str",
+                    "number",
+                    "str",
+                ],
+                interactive=False,
+                label="Unified Evidence Pack",
+            )
+            agentic_button.click(
+                service.answer_agentic,
+                inputs=[agentic_vehicle, agentic_question],
+                outputs=[
+                    agentic_answer,
+                    agentic_trace,
+                    agentic_evidence,
                 ],
             )
     return demo

@@ -170,6 +170,7 @@ class ResponsesGenerationBackend:
         self.api_key = (api_key or "").strip()
         self.timeout = timeout
         self.max_output_tokens = max_output_tokens
+        self.last_usage: dict[str, Any] | None = None
         hostname = urlparse(self.endpoint).hostname
         if hostname not in {"127.0.0.1", "localhost", "::1"}:
             if not self.api_key:
@@ -291,6 +292,8 @@ class ResponsesGenerationBackend:
             raise GroundedGenerationError(
                 "Responses endpoint returned an invalid object"
             )
+        usage = value.get("usage")
+        self.last_usage = dict(usage) if isinstance(usage, Mapping) else None
         answer = self._output_text(value)
         validate_grounded_text(answer, len(evidence))
         return answer
@@ -324,6 +327,7 @@ class QwenGenerationBackend:
         self.api_key = (api_key or "").strip()
         self.timeout = timeout
         self.max_output_tokens = max_output_tokens
+        self.last_usage: dict[str, Any] | None = None
         if not self.api_key:
             raise ValueError(
                 "DASHSCOPE_API_KEY is required for Qwen generation"
@@ -443,6 +447,8 @@ class QwenGenerationBackend:
             raise GroundedGenerationError(
                 "Qwen endpoint returned an invalid object"
             )
+        usage = value.get("usage")
+        self.last_usage = dict(usage) if isinstance(usage, Mapping) else None
         answer = self._output_text(value)
         validate_grounded_text(answer, len(evidence))
         return answer

@@ -10,6 +10,7 @@ from .visual import (
     VisualTextFusionIndex,
     build_visual_index,
 )
+from automanual_rag.graphrag import GraphRetriever, build_manual_graph
 
 __all__ = [
     "BM25Index",
@@ -19,9 +20,11 @@ __all__ = [
     "TableRowIndex",
     "VisualIndex",
     "VisualTextFusionIndex",
+    "GraphRetriever",
     "build_bm25_index",
     "build_dense_index",
     "build_table_index",
     "build_table_row_index",
     "build_visual_index",
+    "build_manual_graph",
 ]

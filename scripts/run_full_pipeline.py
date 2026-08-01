@@ -134,6 +134,7 @@ def stage_commands(
                 "build_table_index.py",
                 "build_table_row_index.py",
                 "build_visual_index.py",
+                "build_graph_index.py",
             )
         ]
     if stage == "evaluate":
@@ -147,6 +148,7 @@ def stage_commands(
                 "evaluate_tables.py",
                 "evaluate_table_rows.py",
                 "evaluate_answering.py",
+                "evaluate_agentic_graphrag.py",
                 "audit_retrieval.py",
                 "audit_visual.py",
             )
