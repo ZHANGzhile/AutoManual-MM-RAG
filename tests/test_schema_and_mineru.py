@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -8,6 +9,9 @@ import unittest
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LOCAL_DATA_ROOT = Path(
+    os.environ.get("AUTOMANUAL_TEST_DATA_ROOT", PROJECT_ROOT / "data")
+).resolve()
 SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
@@ -248,16 +252,22 @@ class ImporterFixtureTests(unittest.TestCase):
 
 
 @unittest.skipUnless(
-    (PROJECT_ROOT / "data" / "parsed").is_dir(),
+    any(
+        (LOCAL_DATA_ROOT / "parsed").glob(
+            "*/*/txt/*_content_list.json"
+        )
+    ),
     "local MinerU corpus is not available",
 )
 class LocalCorpusIntegrationTests(unittest.TestCase):
     def test_real_four_document_metadata_and_asset_integrity(self) -> None:
-        documents = load_manifest(PROJECT_ROOT / "data" / "manifests" / "corpus.csv")
+        documents = load_manifest(
+            LOCAL_DATA_ROOT / "manifests" / "corpus.csv"
+        )
         self.assertEqual(len(documents), 4)
         importer = MinerUImporter(
-            project_root=PROJECT_ROOT,
-            parsed_root=PROJECT_ROOT / "data" / "parsed",
+            project_root=LOCAL_DATA_ROOT.parent,
+            parsed_root=LOCAL_DATA_ROOT / "parsed",
         )
         global_ids: set[str] = set()
         for document in documents:
@@ -284,7 +294,9 @@ class LocalCorpusIntegrationTests(unittest.TestCase):
                 self.assertTrue(
                     all(
                         element.asset_path
-                        and (PROJECT_ROOT / element.asset_path).is_file()
+                        and (
+                            LOCAL_DATA_ROOT.parent / element.asset_path
+                        ).is_file()
                         for element in visual_elements
                     )
                 )

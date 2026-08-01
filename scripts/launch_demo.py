@@ -49,6 +49,14 @@ def parse_args() -> argparse.Namespace:
         / "indexes"
         / "table_rows.sqlite3",
     )
+    parser.add_argument(
+        "--graph-index",
+        type=Path,
+        default=PROJECT_ROOT
+        / "data"
+        / "indexes"
+        / "manual_graph.sqlite3",
+    )
     return parser.parse_args()
 
 
@@ -62,6 +70,7 @@ def main() -> int:
             table_index_path=args.table_index,
             table_row_index_path=args.table_row_index,
             visual_index_path=args.visual_index,
+            graph_index_path=args.graph_index,
         )
         demo = create_demo(service)
         demo.launch(

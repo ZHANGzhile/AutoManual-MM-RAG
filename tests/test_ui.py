@@ -7,19 +7,23 @@ from automanual_rag.ui.app import DemoService
 
 
 class DemoServiceTests(unittest.TestCase):
+    @staticmethod
+    def _document():
+        return SimpleNamespace(
+            doc_id="ford_bronco_2026_na_en",
+            brand="Ford",
+            model="Bronco",
+            year="2026",
+            region="North America",
+            language="en",
+            manual_type="owner_manual",
+        )
+
     def test_verified_table_crop_is_shown_before_topic_matches(self) -> None:
         service = DemoService.__new__(DemoService)
         service.project_root = Path("C:/project")
         service.documents = {
-            "Ford Bronco 2026": SimpleNamespace(
-                doc_id="ford_bronco_2026_na_en",
-                brand="Ford",
-                model="Bronco",
-                year="2026",
-                region="North America",
-                language="en",
-                manual_type="owner_manual",
-            )
+            "Ford Bronco 2026": self._document()
         }
         service.table_rows = object()
         service.tables = SimpleNamespace(
@@ -72,6 +76,46 @@ class DemoServiceTests(unittest.TestCase):
         )
         self.assertIn("Verified source [1]", gallery[0][1])
         self.assertIn("ROOF RACK LOAD CAPACITIES", gallery[0][1])
+
+    def test_agentic_tab_returns_trace_and_evidence(self) -> None:
+        service = DemoService.__new__(DemoService)
+        service.documents = {"Ford Bronco 2026": self._document()}
+        service.agentic = SimpleNamespace(
+            run=lambda **kwargs: {
+                "answer": "Use these steps [1].",
+                "initial_route": {"text": True, "graph": True},
+                "retry_count": 0,
+                "latency_ms": 12.5,
+                "trace": [
+                    {
+                        "sequence": 1,
+                        "node": "Planner/Router",
+                        "status": "ok",
+                        "latency_ms": 0.5,
+                    }
+                ],
+                "evidence": [
+                    {
+                        "citation_id": 1,
+                        "brand": "Ford",
+                        "model": "Bronco",
+                        "year": "2026",
+                        "page_nos": [89],
+                        "section_path": ["Steering Wheel"],
+                        "chunk_type": "graph_path",
+                        "retrieval_rank": 1,
+                        "rerank_score": 0.9,
+                    }
+                ],
+            }
+        )
+        answer, trace, rows = service.answer_agentic(
+            "Ford Bronco 2026",
+            "How do I adjust the steering wheel and what warning applies?",
+        )
+        self.assertIn("[1]", answer)
+        self.assertIn("Planner/Router", trace)
+        self.assertEqual(rows[0][2], "89")
 
 
 if __name__ == "__main__":

@@ -12,8 +12,8 @@
    checks.
 4. `chunks`: preserve page/section boundaries, ordered procedures, and safety
    blocks.
-5. `indexes`: build BM25, dense LSA, table-crop, curated table-row, and visual
-   indexes.
+5. `indexes`: build BM25, dense LSA, table-crop, curated table-row, visual,
+   and deterministic graph indexes.
 6. `evaluate`: rebuild visual Gold data, run text/visual/table/answer metrics,
    and execute retrieval integrity audits.
 7. `test`: run the complete unit and local integration suite.
@@ -33,7 +33,7 @@ The post-MinerU path was rebuilt from the four existing successful parses:
 | Image elements | 3,287 |
 | Table crops | 516 |
 | Curated verified rows | 23 |
-| Runtime indexes | 5 |
+| Runtime indexes in recorded baseline run | 5 |
 | Import anomalies | 0 |
 | Metadata filter violations | 0 |
 
@@ -45,7 +45,7 @@ reused.
 The machine-readable record is
 `outputs/metrics/full_pipeline_run.json`.
 
-The final automated suite contains 58 passing tests. A real localhost API
+The recorded baseline suite contains 58 passing tests. A real localhost API
 smoke run also exercised all three endpoints: text returned three cited
 evidence items, the verified table route returned Bronco physical PDF page
 294, and image-plus-text retrieval returned Bronco physical PDF page 112.
@@ -59,3 +59,13 @@ smoke and a paid multimodal `qwen3-vl-flash` request in the Germany
 generated the correct seatbelt-reminder interpretation, and cited physical
 PDF page 29. Credentials and the workspace-specific hostname remain only in
 the ignored local `.env`.
+
+## Agentic GraphRAG extension verification
+
+The pipeline definition now adds `build_graph_index.py` to `indexes` and
+`evaluate_agentic_graphrag.py` to `evaluate`, for six combined runtime
+indexes. In the independent worktree, the graph stage read the main project's
+ignored local data through explicit paths and built 29,797 nodes / 125,699
+edges; the Agentic comparison and the complete 66-test suite passed. The
+original `full_pipeline_run.json` was not overwritten because it records the
+earlier baseline rebuild.

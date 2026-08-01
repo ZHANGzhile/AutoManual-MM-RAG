@@ -34,6 +34,7 @@ class FullPipelineTests(unittest.TestCase):
                 "build_table_index.py",
                 "build_table_row_index.py",
                 "build_visual_index.py",
+                "build_graph_index.py",
             ],
         )
 

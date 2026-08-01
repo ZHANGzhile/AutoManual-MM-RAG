@@ -22,7 +22,8 @@ North American English owner manuals:
 | Answer/refusal decision accuracy | 0.9667 |
 | No-answer accuracy | 1.0000 |
 | Metadata filter violations | 0 |
-| Automated tests | 58 passing |
+| Deterministic graph | 29,797 nodes / 125,699 edges |
+| Automated tests | 66 passing |
 
 The offline evaluations, retrieval audits, demo screenshots, and machine-readable
 metrics are checked in under `reports/` and `outputs/`. A paid live smoke test
@@ -52,6 +53,119 @@ flowchart LR
     Guard --> Answer["Cited answer or explicit refusal"]
     Answer --> Demo["Gradio text / image / table demo"]
 ```
+
+## Agentic GraphRAG extension
+
+The repository now includes a deterministic, evidence-provenance automotive
+manual graph plus an explicit-state Agentic workflow. This extension does not
+replace the high-accuracy baseline. It adds auditable multi-hop paths and
+selectively coordinates the existing text, visual, table, and graph
+retrievers.
+
+```mermaid
+flowchart TD
+    Request["Question + exact vehicle metadata"] --> Gate["Metadata hard gate"]
+    Gate --> Planner["Planner / Router"]
+    Planner --> Text["Text retrieval"]
+    Planner --> Visual["Visual retrieval"]
+    Planner --> Table["Table retrieval"]
+    Planner --> Graph["Graph entity match + 1-2 hop expansion"]
+    Text --> Join["Parallel retrieval join"]
+    Visual --> Join
+    Table --> Join
+    Graph --> Join
+    Join --> Critic["Evidence Critic"]
+    Critic -->|insufficient, first attempt| Replan["One broadened replan"]
+    Replan --> Text
+    Replan --> Visual
+    Replan --> Table
+    Replan --> Graph
+    Critic -->|accepted| Synthesis["Answer / Synthesis"]
+    Critic -->|still insufficient| Refusal["Explicit refusal"]
+    Synthesis --> Guard["Citation + metadata guard"]
+    Guard -->|pass| Result["Cited answer + execution trace"]
+    Guard -->|fail once| Replan
+    Guard -->|fail twice| Refusal
+```
+
+The deterministic builder derives `Vehicle`, `Section`, `Component`, `Symbol`,
+`Procedure`, `Step`, `Warning`, `Caution`, `Specification`, `Image`, `Table`,
+and `EvidencePage` nodes from the existing normalized elements and chunks.
+The graph contains all documented `APPLIES_TO`, `LOCATED_IN`,
+`SYMBOL_MEANS`, `EXPLAINED_BY`, `REQUIRES_STEP`, `NEXT_STEP`,
+`HAS_WARNING`, `HAS_SPECIFICATION`, `ILLUSTRATED_BY`, and `REFERENCES`
+relations. Every node and edge retains its manual metadata, physical page,
+and source element/chunk IDs.
+
+Build the ignored graph index from the current worktree:
+
+```powershell
+python .\scripts\build_graph_index.py
+```
+
+Or read the main project's ignored local data without copying it:
+
+```powershell
+python .\scripts\build_graph_index.py `
+  --data-root C:\path\to\AutoManual-MM-RAG\data
+```
+
+Search graph paths:
+
+```powershell
+python .\scripts\search_graph.py `
+  "How do I adjust the steering wheel and what warning applies?" `
+  --model Bronco `
+  --year 2026
+```
+
+Run the Agentic CLI with a complete route/retrieval/critic/retry/latency trace:
+
+```powershell
+python .\scripts\answer_agentic_question.py `
+  "How do I adjust the steering wheel and what warning applies?" `
+  --data-root C:\path\to\AutoManual-MM-RAG\data `
+  --model Bronco `
+  --year 2026 `
+  --json
+```
+
+Launch the independent API at `http://127.0.0.1:8010`:
+
+```powershell
+python .\scripts\launch_agentic_api.py `
+  --data-root C:\path\to\AutoManual-MM-RAG\data
+```
+
+It exposes `GET /health` and `POST /v1/agentic`. The existing Gradio app also
+shows an Agentic GraphRAG tab whenever `manual_graph.sqlite3` is available.
+Qwen and Responses generation remain optional; the same ignored `.env`,
+Evidence Pack, labeled image payloads, citation validation, and offline
+fallback are reused.
+
+The checked-in 12-question multi-hop development comparison reports:
+
+| System | Evidence recall | Path accuracy | Route accuracy | Decision accuracy | Refusal accuracy | Mean latency |
+|---|---:|---:|---:|---:|---:|---:|
+| Baseline RAG | 0.9167 | N/A | N/A | 1.0000 | 1.0000 | 17.6 ms |
+| GraphRAG | 0.9167 | 0.6250 | N/A | 0.6667 | 0.0000 | 154.7 ms |
+| Agentic GraphRAG | 0.9167 | 0.5714 | 1.0000 | 1.0000 | 1.0000 | 135.5 ms |
+
+All three produced `1.0000` structural citation faithfulness and zero metadata
+violations. GraphRAG did **not** improve evidence recall over the baseline,
+and standalone graph answering over-answered all four refusal cases. The
+Agentic critic preserved baseline decision/refusal accuracy but added latency
+and achieved only `0.5714` Gold path accuracy. These are development-set
+results, not a claim of production improvement. Reproduce them with:
+
+```powershell
+python .\scripts\evaluate_agentic_graphrag.py `
+  --data-root C:\path\to\AutoManual-MM-RAG\data
+```
+
+See `reports/agentic_graphrag.md`,
+`reports/agentic_graphrag_evaluation.md`, and
+`outputs/metrics/agentic_graphrag_comparison.json`.
 
 ## Current corpus stage
 
@@ -86,7 +200,7 @@ their caption/footnote when present plus nearest same-page text. No VLM calls
 are made during import.
 
 The importer, chunker, and BM25 core use the Python standard library. Install
-the retrieval and visual extras before running the complete 58-test suite:
+the retrieval and visual extras before running the complete 66-test suite:
 
 ```powershell
 python -m pip install -r .\requirements-retrieval.txt

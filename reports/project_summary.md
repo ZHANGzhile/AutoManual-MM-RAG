@@ -16,7 +16,9 @@
 - A FastAPI text/image/table service plus a read-only-data Docker deployment.
 - A staged public-PDF-to-index rebuild command with integrity locks, isolated
   MinerU dependencies, audit reports, and restart support.
-- 58 passing automated tests and reproducible offline evaluation artifacts.
+- A deterministic 29,797-node / 125,699-edge manual graph, graph-path
+  retrieval, and an explicit-state Agentic GraphRAG workflow.
+- 66 passing automated tests and reproducible offline evaluation artifacts.
 
 ## Measured results
 
@@ -31,10 +33,19 @@
 | Verified-row no-answer accuracy | 1.0000 |
 | Metadata filter violations | 0 |
 | Live Qwen visual generation | Passed |
+| Agentic route accuracy (12-query dev set) | 1.0000 |
+| Agentic multi-hop evidence recall | 0.9167 |
+| Agentic Gold path accuracy | 0.5714 |
+| Agentic refusal accuracy | 1.0000 |
 
 The visual and table figures are development-set results. The table-value
 benchmark covers 23 manually verified rows from nine selected source tables;
 it is not a claim of general OCR over all 516 crops.
+
+The Agentic figures are also development-set results. GraphRAG did not improve
+evidence recall over the unchanged baseline (`0.9167` for both). Standalone
+GraphRAG refused none of four no-answer questions, while the Agentic Evidence
+Critic preserved `1.0000` refusal accuracy at higher latency.
 
 ## Portfolio-ready description
 
@@ -46,7 +57,11 @@ it is not a claim of general OCR over all 516 crops.
   zero cross-vehicle metadata violations on the development evaluations.
 - Added verified table-row answering with source-image hashes, applicability
   guards, explicit refusal behavior, a Gradio demo, optional grounded LLM/VLM
-  generation, a FastAPI/Docker deployment path, and 58 passing tests.
+  generation, a FastAPI/Docker deployment path, and 66 passing tests.
 - Added a provider-isolated Qwen3-VL adapter and verified the complete
   upload-to-retrieval-to-cited-generation path against the Frankfurt API
   without committing credentials or workspace identifiers.
+- Built an evidence-provenance automotive graph and explicit-state Agentic
+  workflow with conditional routing, concurrent specialist retrieval, one
+  bounded replan, citation/metadata guards, independent CLI/API entrypoints,
+  execution traces, and a three-system multi-hop evaluation.
