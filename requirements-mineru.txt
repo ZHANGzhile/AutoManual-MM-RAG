@@ -1,3 +1,4 @@
 # Parser version used to create the checked-in corpus metrics.
-# Keep MinerU isolated from the retrieval/demo environment.
-mineru[all]==3.4.4
+# Keep MinerU isolated from the retrieval/demo environment. This project uses
+# the pipeline backend; local-VLM, LMDeploy, S3, and Gradio extras are omitted.
+mineru[pipeline]==3.4.4

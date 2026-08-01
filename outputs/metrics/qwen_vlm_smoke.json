@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-01T11:11:27.442065+00:00",
+  "validation_type": "paid_live_smoke",
+  "provider": "Alibaba Cloud Model Studio",
+  "region": "Germany (Frankfurt)",
+  "deployment_scope": "EU",
+  "credentials_recorded": false,
+  "endpoint_hostname_recorded": false,
+  "authentication": {
+    "http_status": 200,
+    "requested_model": "qwen3-vl-flash",
+    "returned_model": "qwen3-vl-flash",
+    "response_text": "OK"
+  },
+  "multimodal": {
+    "query_id": "bronco_icon_001",
+    "query_image": "data/eval/visual_queries/bronco_icon_001.jpg",
+    "question": "What does this warning symbol mean?",
+    "filters": {
+      "brand": "Ford",
+      "model": "Bronco",
+      "year": "2026",
+      "region": "North America",
+      "language": "en",
+      "manual_type": "owner_manual"
+    },
+    "retrieval_backend": "visual_text_rrf",
+    "evidence_count": 5,
+    "metadata_filter_violations": 0,
+    "generation_backend": "qwen_chat_completions_v1",
+    "status": "answered",
+    "generation_status": "generated",
+    "observed_answer": "Seatbelt reminder indicator",
+    "supporting_citation_id": 5,
+    "supporting_page_no": 29,
+    "structural_grounding_validation": "passed"
+  },
+  "estimated_total_cost_usd_upper_bound": 0.002,
+  "usage_tokens_persisted": false,
+  "limitations": [
+    "Single manually inspected generated-answer smoke test",
+    "Does not replace the 12-query offline visual retrieval benchmark",
+    "Provider response was more verbose than necessary"
+  ]
+}

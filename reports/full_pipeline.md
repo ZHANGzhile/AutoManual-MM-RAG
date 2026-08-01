@@ -45,12 +45,17 @@ reused.
 The machine-readable record is
 `outputs/metrics/full_pipeline_run.json`.
 
-The final automated suite contains 56 passing tests. A real localhost API
+The final automated suite contains 58 passing tests. A real localhost API
 smoke run also exercised all three endpoints: text returned three cited
 evidence items, the verified table route returned Bronco physical PDF page
 294, and image-plus-text retrieval returned Bronco physical PDF page 112.
 
-The Compose YAML was parsed successfully. Docker itself is not installed on
-the development machine, so the image build was not executed locally. The
-optional remote Responses call was validated with a mocked endpoint; no paid
-API request was made and the default runtime remains offline.
+The Compose YAML was parsed successfully. The Docker CLI is not available in
+the current development terminal, so the image build has not been executed
+locally. The OpenAI Responses adapter remains mock-tested. A separate Qwen
+Chat Completions adapter was validated with both an HTTP 200 authentication
+smoke and a paid multimodal `qwen3-vl-flash` request in the Germany
+(Frankfurt) region. That request retrieved five Bronco-only evidence records,
+generated the correct seatbelt-reminder interpretation, and cited physical
+PDF page 29. Credentials and the workspace-specific hostname remain only in
+the ignored local `.env`.

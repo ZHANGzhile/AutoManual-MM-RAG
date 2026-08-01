@@ -6,6 +6,31 @@ MinerU output normalization, evidence-preserving JSONL, and auditable
 BM25/Dense/RRF text baselines, traditional visual retrieval, and an
 evidence-constrained extractive answer/demo layer.
 
+## Verified MVP results
+
+The repository now contains a complete, reproducible MVP over four Ford 2026
+North American English owner manuals:
+
+| Result | Value |
+|---|---:|
+| Normalized elements | 30,131 |
+| Searchable text chunks | 12,236 |
+| Traceable image elements | 3,287 |
+| Traceable table crops | 516 |
+| BM25 Recall@10 | 0.9615 |
+| Visual + text-hint Recall@1 | 1.0000 |
+| Answer/refusal decision accuracy | 0.9667 |
+| No-answer accuracy | 1.0000 |
+| Metadata filter violations | 0 |
+| Automated tests | 58 passing |
+
+The offline evaluations, retrieval audits, demo screenshots, and machine-readable
+metrics are checked in under `reports/` and `outputs/`. A paid live smoke test
+also verified the complete visual path against Alibaba Cloud
+`qwen3-vl-flash` in the Germany (Frankfurt) region: the system retrieved five
+Bronco-only evidence items, generated a seatbelt-reminder answer, and cited the
+matching manual evidence. See `reports/qwen_vlm_validation.md`.
+
 ## Architecture
 
 ```mermaid
@@ -61,7 +86,7 @@ their caption/footnote when present plus nearest same-page text. No VLM calls
 are made during import.
 
 The importer, chunker, and BM25 core use the Python standard library. Install
-the retrieval and visual extras before running the complete 56-test suite:
+the retrieval and visual extras before running the complete 58-test suite:
 
 ```powershell
 python -m pip install -r .\requirements-retrieval.txt
@@ -108,20 +133,28 @@ Useful restart examples:
 
 The PDF integrity lock is
 `data/manifests/manual_checksums.json`. MinerU is pinned separately in
-`requirements-mineru.txt` so its large parser/model dependency tree cannot
-conflict with the retrieval and Gradio environment. The latest verified run
-is recorded in `outputs/metrics/full_pipeline_run.json`.
+`requirements-mineru.txt` so its parser/model dependency tree cannot conflict
+with the retrieval and Gradio environment. Only the Windows-compatible
+`pipeline` extra is installed; unrelated local-VLM, LMDeploy, S3, and Gradio
+extras are excluded. The latest verified run is recorded in
+`outputs/metrics/full_pipeline_run.json`.
 
 ## Optional grounded LLM/VLM generation
 
 The default path stays fully offline and returns extractive, cited evidence.
-To use a Responses-compatible LLM/VLM for final wording, set the backend,
-model, and API key, then run the same text command:
+To use a Responses-compatible LLM/VLM for final wording, copy the ignored
+environment template and fill in the real model, endpoint, and key:
 
 ```powershell
-$env:AUTOMANUAL_GENERATION_BACKEND = "responses"
-$env:AUTOMANUAL_GENERATION_MODEL = "<your text-and-image model>"
-$env:OPENAI_API_KEY = "<your API key>"
+Copy-Item .\.env.example .\.env
+notepad .\.env
+```
+
+Set `AUTOMANUAL_GENERATION_BACKEND=responses` after completing the other
+values. The CLI, Gradio app, and FastAPI service automatically read `.env`
+without overriding variables already set by the process. Then run:
+
+```powershell
 .\.venv\Scripts\python.exe .\scripts\answer_question.py `
   "How do I adjust the steering wheel?" `
   --model Bronco `
@@ -142,6 +175,52 @@ Retrieved text and images are labeled as an Evidence Pack. Generated answers
 must cite valid `[n]` evidence identifiers; API errors or failed grounding
 checks fall back to the offline result. Remote endpoints must use HTTPS, while
 loopback HTTP is allowed for a company-hosted compatible service.
+
+### Dedicated Qwen3-VL-Flash entry point
+
+Qwen uses DashScope's OpenAI-compatible Chat Completions payload rather than
+the Responses payload. Its adapter is isolated from the OpenAI backend, while
+retrieval, vehicle filters, the Evidence Pack, and citation validation remain
+shared.
+
+Fill these ignored `.env` values:
+
+```dotenv
+DASHSCOPE_API_KEY=replace-with-your-dashscope-key
+QWEN_MODEL=qwen3-vl-flash
+DASHSCOPE_CHAT_COMPLETIONS_URL=https://YOUR_WORKSPACE_ID.eu-central-1.maas.aliyuncs.com/compatible-mode/v1/chat/completions
+```
+
+Then run:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\answer_image_question_qwen.py `
+  .\path\to\query.jpg `
+  --question "What does this dashboard warning mean?" `
+  --model "Mustang Mach-E" `
+  --year 2026 `
+  --json
+```
+
+The URL and API key must belong to the same Alibaba Cloud region. For an EU
+workspace, use the Frankfurt workspace-specific Chat Completions URL shown
+above. To enable Qwen in the shared CLI, Gradio, and FastAPI paths instead of
+using the dedicated script, also set
+`AUTOMANUAL_GENERATION_BACKEND=qwen`.
+
+The checked-in live validation contains no credential or workspace identifier:
+
+- authentication smoke: HTTP 200, model `qwen3-vl-flash`
+- multimodal result: `answered` / `generated`
+- retrieval backend: `visual_text_rrf`
+- generation backend: `qwen_chat_completions_v1`
+- evidence count: 5, with zero cross-vehicle evidence
+- observed answer: Ford Bronco seatbelt-reminder indicator, supported by
+  citation `[5]` on physical PDF page 29
+
+This is a one-case integration smoke test, not a full generated-answer
+benchmark. The 12-query visual retrieval evaluation remains offline and
+deterministic.
 
 ## FastAPI and Docker deployment
 
